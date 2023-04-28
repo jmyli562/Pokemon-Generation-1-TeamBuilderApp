@@ -1,0 +1,10 @@
+.pokemon-list {
+    background-color: yellow;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
+
+body {
+    background-color: red;
+}
