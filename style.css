@@ -1,8 +1,9 @@
-.pokemon-list {
+.pokemon-header {
     background-color: yellow;
     text-align: center;
     margin: auto;
     width: 50%;
+    border: 5px solid gray;
 }
 
 body {
