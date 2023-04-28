@@ -9,3 +9,8 @@
 body {
     background-color: red;
 }
+
+#add-pokemon{
+  margin: 0;
+  top: 50%;
+}

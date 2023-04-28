@@ -1,8 +1,30 @@
 const pkmTeam1 = {};
 const pkmTeam2 = {};
-const addPkmBtn = document.getElementById("add-pokemon");
+const slctDropDown = document.getElementById("pokemon-list"); //getting the dropdown menu
+const addPkmBtn = document.getElementById("add-pokemon"); //getting the add pokemon button
+
+slctDropDown.addEventListener("change", displayPokemonImage)
+addPkmBtn.addEventListener("click", addPokemonToTeam);
 
 fetchPokemonNames()
+
+function displayPokemonImage(){
+    const div = document.getElementById("pokemon-image");
+    const pokemonName = slctDropDown.value; //grabbing the pokemon that the user selected
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+    .then(resp=>resp.json())
+    .then((mons)=>{
+        const img = document.createElement("img");
+        img.src = mons.sprites.front_default;
+        img.style = "width:300px;height:300px;";
+        div.appendChild(img);
+        //console.log(mons.sprites.front_default);
+    })
+}
+
+function addPokemonToTeam(){
+    //each team can have a maximum of only 6 pokemon. do not let the user add more than 6 
+}
 
 function fetchPokemonNames(){
     let pokemonNames = [];
