@@ -9,16 +9,14 @@ addPkmBtn.addEventListener("click", addPokemonToTeam);
 fetchPokemonNames()
 
 function displayPokemonImage(){
-    const div = document.getElementById("pokemon-image");
+    const img = document.getElementById("image");
     const pokemonName = slctDropDown.value; //grabbing the pokemon that the user selected
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
     .then(resp=>resp.json())
     .then((mons)=>{
-        const img = document.createElement("img");
         img.src = mons.sprites.front_default;
         img.style = "width:300px;height:300px;";
         div.appendChild(img);
-        //console.log(mons.sprites.front_default);
     })
 }
 
