@@ -72,3 +72,7 @@ body {
     font-size: 40px;
     color:rgb(50, 146, 190)
 }
+
+#team-display{
+    display: flex;
+}

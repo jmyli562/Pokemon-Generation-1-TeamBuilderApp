@@ -1,7 +1,15 @@
 let changedPokemon = false;
-const pkmTeam1 = []; //an array that will hold pokemon objects of the users selected team of pokemon
-const pkmTeam2 = [];
+const pkmTeams = []; //this will hold the array of teams created by the user 
+const currTeam = []; //an array that will hold pokemon objects of the users selected team of pokemon
 let currPokemon = {};
+let numTeamsCreated = 0;
+
+const teamPreview = document.getElementById("team-viewer");
+const move1 = document.getElementById("move1");
+const move2 = document.getElementById("move2");
+const move3 = document.getElementById("move3");
+const move4 = document.getElementById("move4");
+
 const div = document.getElementById("pokemon-image");
 const img = document.getElementById("image");
 const p = document.getElementById("name");
@@ -84,30 +92,51 @@ function displayMoves(moves){
 
 function addPokemonToTeam(){
     //each team can have a maximum of only 6 pokemon. do not let the user add more than 6 
-    if(checkIfMaxReached(pkmTeam1)){
+        //ask user if they want to save the current team
         //add the pokemon to a new team
-        console.log("TEAM FULL");
-    }else{
-        currPokemon.move1 = move1.value;
-        currPokemon.move2 = move2.value;
-        currPokemon.move3 = move3.value;
-        currPokemon.move4 = move4.value;
+        //clear the current team to make room for a new team
+        //ask the user if they would like to save their team      
+        //const saveTeamBtn = document.createElement("button");
+        //saveTeamBtn.textContent = "Save Team";
 
-        pkmTeam1.push(currPokemon);
-        displayTeam(pkmTeam1);
-        currPokemon = {};
-    }
+        //pkmTeams.push(currTeam)
+
+        if(checkIfMaxReached(currTeam)){
+            if(window.confirm("Do you want to save your team?")){
+                pkmTeams.push(currTeam);
+                numTeamsCreated+=1;
+                currTeam.length = 0;
+
+                currTeam.push(currPokemon);
+                displayTeam(currTeam);
+                currPokemon = {};
+
+            }else{
+
+            }
+
+        }else{
+            currPokemon.move1 = move1.value;
+            currPokemon.move2 = move2.value;
+            currPokemon.move3 = move3.value;
+            currPokemon.move4 = move4.value;
+
+            currTeam.push(currPokemon);
+            displayTeam(currTeam);
+            currPokemon = {};
+        }
 }
 
 function displayTeam(arr){
     for(let i = 0; i < arr.length; i++){
-        if(arr.length !== 1){
-            i = arr.length -1;
-            const grabDiv = document.getElementById("team1");
+        if(numTeamsCreated > 0){
+            i = arr.length - 1;
+            const grabDiv = document.getElementById("team2");
             const img = document.createElement("img");
             img.src = arr[i].image;
             grabDiv.appendChild(img);
         }else{
+            i = arr.length - 1;
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
             img.src = arr[i].image;
