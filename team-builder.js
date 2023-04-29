@@ -1,5 +1,6 @@
 let changedPokemon = false;
-const pkmTeam1 = []; //this will hold the array of teams created by the user
+let chosenTeam;
+const pkmTeam1 = []; 
 const pkmTeam2 = []; 
 const currTeam = []; //an array that will hold pokemon objects of the users selected team of pokemon
 let currPokemon = {};
@@ -31,7 +32,42 @@ addPkmBtn.addEventListener("click", addPokemonToTeam);
 saveTeamBtn1.addEventListener("click", saveCurrTeamToOne);
 saveTeamBtn2.addEventListener("click", saveCurrTeamToTwo);
 
+showTeamBtn1.addEventListener("click", displayTeamOne);
+showTeamBtn2.addEventListener("click", displayTeamTwo);
+
 fetchPokemonNames();
+
+function displayTeamOne(){
+    chosenTeam = 1;
+    displayTeam(pkmTeam1, chosenTeam);
+}
+
+function displayTeamTwo(){
+    chosenTeam = 2;
+    displayTeam(pkmTeam2, chosenTeam);
+}
+
+function displayTeam(arr, team){
+    if(team === 1){
+        for(let i = 0; i < arr.length; i++){
+            const grabDiv = document.getElementById("team1");
+            const img = document.createElement("img");
+            img.src = arr[i].image;
+            img.addEventListener("click", viewPokemonStats);
+            img.addEventListener("dblclick", deletePokemonFromTeam);
+            grabDiv.appendChild(img);
+        }
+    }else{
+        for(let i = 0; i < arr.length; i++){
+            const grabDiv = document.getElementById("team2");
+            const img = document.createElement("img");
+            img.src = arr[i].image;
+            img.addEventListener("click", viewPokemonStats);
+            img.addEventListener("dblclick", deletePokemonFromTeam);
+            grabDiv.appendChild(img);
+        }
+    }
+}
 
 function saveCurrTeamToOne(){
     if(currTeam.length < 6){
@@ -159,14 +195,14 @@ function addPokemonToTeam(){
             currPokemon.move4 = move4.value;
 
             currTeam.push(currPokemon);
-            displayTeam(currTeam);
+            previewTeam(currTeam);
             currPokemon = {};
 
             displayPokemonImage();
         }
 }
 
-function displayTeam(arr){
+function previewTeam(arr){
     for(let i = 0; i < arr.length; i++){
         if(numTeamsCreated > 0){
             i = arr.length - 1;
