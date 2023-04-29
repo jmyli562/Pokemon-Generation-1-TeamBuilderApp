@@ -1,6 +1,6 @@
 .pokemon-header {
     font-family: 'Pokemon Solid', sans-serif;
-    background-color: rgb(58, 143, 177);
+    background-color: rgb(15, 83, 185);
     text-align: center;
     margin: auto;
     width: 50%;
@@ -65,4 +65,10 @@ body {
 
 #p-move4{
     padding-right: 20px;
+}
+
+.header-2{
+    font-family: 'Pokemon Solid', sans-serif;
+    font-size: 40px;
+    color:rgb(50, 146, 190)
 }
