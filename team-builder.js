@@ -155,7 +155,8 @@ function deletePokemonFromTeam(e){ //should delete the pokemon on the webpage as
     if(window.confirm("Are you sure you want to delete this Pokemon from your team?")){
         for(let i = 0; i < currTeam.length; i++){
             if(e.target.src === currTeam[i].image){
-                currTeam.pop(currTeam[i]);
+                const index = currTeam.indexOf(currTeam[i]);
+                currTeam.splice(index, 1);
                 e.target.remove();
             }
         }
