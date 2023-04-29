@@ -95,23 +95,22 @@ function addPokemonToTeam(){
         //ask user if they want to save the current team
         //add the pokemon to a new team
         //clear the current team to make room for a new team
-        //ask the user if they would like to save their team      
+        //ask the user if they would like to save their team 
 
         if(checkIfMaxReached(currTeam)){
-            if(window.confirm("Do you want to save your current team?")){
-                pkmTeams.push(currTeam);
-                numTeamsCreated+=1;
-                currTeam.length = 0;
 
-                currTeam.push(currPokemon);
-                displayTeam(currTeam);
-                currPokemon = {};
+            window.alert("You are not allowed to add more than 6 members to a team. Please delete an pokemon from the current team or add this pokemon to a new team.");
 
-            }else{
+            //pkmTeams.push(currTeam);
+            //numTeamsCreated+=1;
+            //currTeam.length = 0;
 
-            }
+            //currTeam.push(currPokemon);
+            //displayTeam(currTeam);
+            //currPokemon = {};
 
         }else{
+            //we only want to set the moves to the pokemon when the user presses the add pokemon button because they can change their mind!
             currPokemon.move1 = move1.value;
             currPokemon.move2 = move2.value;
             currPokemon.move3 = move3.value;
@@ -120,6 +119,8 @@ function addPokemonToTeam(){
             currTeam.push(currPokemon);
             displayTeam(currTeam);
             currPokemon = {};
+
+            displayPokemonImage();
         }
 }
 

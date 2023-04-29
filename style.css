@@ -76,3 +76,13 @@ body {
 #team-display{
     display: flex;
 }
+#add-team2{
+    position: relative;
+    left: 500px;
+    display: block;
+}
+#add-team1{
+    position: relative;
+    left: 500px;
+    display: block;
+}
