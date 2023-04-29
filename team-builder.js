@@ -8,6 +8,9 @@ let numTeamsCreated = 0;
 const teamPreview = document.getElementById("team-viewer");
 const saveTeamBtn1 = document.getElementById("add-team1");
 const saveTeamBtn2 = document.getElementById("add-team2");
+const showTeamBtn1 = document.getElementById("show-team1");
+const showTeamBtn2 = document.getElementById("show-team2");
+
 const move1 = document.getElementById("move1");
 const move2 = document.getElementById("move2");
 const move3 = document.getElementById("move3");
@@ -48,7 +51,20 @@ function saveCurrTeamToOne(){
 }
 
 function saveCurrTeamToTwo(){
-    
+    if(currTeam.length < 6){
+        window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
+    }else{
+        for(let i = 0; i < currTeam.length; i++){
+            pkmTeam2.push(currTeam[i]);
+        }
+
+        currTeam.length = 0; //clearing the currentTeam
+        const pkmImages = document.getElementById("team1");
+        
+        while(pkmImages.firstChild){
+            pkmImages.removeChild(pkmImages.firstChild);
+        }
+    }
 }
 
 function displayPokemonImage(){
