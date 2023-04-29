@@ -96,13 +96,9 @@ function addPokemonToTeam(){
         //add the pokemon to a new team
         //clear the current team to make room for a new team
         //ask the user if they would like to save their team      
-        //const saveTeamBtn = document.createElement("button");
-        //saveTeamBtn.textContent = "Save Team";
-
-        //pkmTeams.push(currTeam)
 
         if(checkIfMaxReached(currTeam)){
-            if(window.confirm("Do you want to save your team?")){
+            if(window.confirm("Do you want to save your current team?")){
                 pkmTeams.push(currTeam);
                 numTeamsCreated+=1;
                 currTeam.length = 0;
@@ -134,15 +130,34 @@ function displayTeam(arr){
             const grabDiv = document.getElementById("team2");
             const img = document.createElement("img");
             img.src = arr[i].image;
+            img.addEventListener("click", viewPokemonStats);
+            img.addEventListener("dblclick", deletePokemonFromTeam);
             grabDiv.appendChild(img);
         }else{
             i = arr.length - 1;
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
             img.src = arr[i].image;
+            img.addEventListener("click", viewPokemonStats);
+            img.addEventListener("dblclick", deletePokemonFromTeam);
             grabDiv.appendChild(img);
         }
     }
+}
+
+function viewPokemonStats(){
+
+    console.log("Entered viewPokemonStats");
+}
+
+function deletePokemonFromTeam(){ //should delete the pokemon on the webpage as well as on the backend
+
+    if(window.confirm("Are you sure you want to delete this Pokemon from your team?")){
+
+    }else{
+
+    }
+
 }
 
 function checkIfMaxReached(arr){
