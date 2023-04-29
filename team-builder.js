@@ -73,15 +73,40 @@ function saveCurrTeamToOne(){
     if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
-        for(let i = 0; i < currTeam.length; i++){
-            pkmTeam1.push(currTeam[i]);
-        }
 
-        currTeam.length = 0; //clearing the currentTeam
-        const pkmImages = document.getElementById("team1");
+        if(pkmTeam1.length === 6){ //checking if team 1 already has something saved to it
+            if(window.confirm("Do you want to overwrite this team to team 1?")){
+                pkmTeam1.length = 0;
+
+                for(let i = 0; i < currTeam.length; i++){
+                    pkmTeam1.push(currTeam[i]);
+                }
         
-        while(pkmImages.firstChild){
-            pkmImages.removeChild(pkmImages.firstChild);
+                window.alert("Team saved to slot 1");
+        
+                currTeam.length = 0; //clearing the currentTeam
+                const pkmImages = document.getElementById("team1");
+                
+                while(pkmImages.firstChild){
+                    pkmImages.removeChild(pkmImages.firstChild);
+                }
+
+            }else{
+                window.alert("Team is full. Please clear team 1 to save your team");
+            }
+        }else{
+            for(let i = 0; i < currTeam.length; i++){
+                pkmTeam1.push(currTeam[i]);
+            }
+    
+            window.alert("Team saved to slot 1");
+    
+            currTeam.length = 0; //clearing the currentTeam
+            const pkmImages = document.getElementById("team1");
+            
+            while(pkmImages.firstChild){
+                pkmImages.removeChild(pkmImages.firstChild);
+            }
         }
     }
 }
@@ -94,6 +119,7 @@ function saveCurrTeamToTwo(){
             pkmTeam2.push(currTeam[i]);
         }
 
+        window.alert("Team saved to slot 2");
         currTeam.length = 0; //clearing the currentTeam
         const pkmImages = document.getElementById("team1");
         
