@@ -1,10 +1,13 @@
 let changedPokemon = false;
-const pkmTeams = []; //this will hold the array of teams created by the user 
+const pkmTeam1 = []; //this will hold the array of teams created by the user
+const pkmTeam2 = []; 
 const currTeam = []; //an array that will hold pokemon objects of the users selected team of pokemon
 let currPokemon = {};
 let numTeamsCreated = 0;
 
 const teamPreview = document.getElementById("team-viewer");
+const saveTeamBtn1 = document.getElementById("add-team1");
+const saveTeamBtn2 = document.getElementById("add-team2");
 const move1 = document.getElementById("move1");
 const move2 = document.getElementById("move2");
 const move3 = document.getElementById("move3");
@@ -22,8 +25,31 @@ const addPkmBtn = document.getElementById("add-pokemon"); //getting the add poke
 
 slctDropDown.addEventListener("change", displayPokemonImage)
 addPkmBtn.addEventListener("click", addPokemonToTeam);
+saveTeamBtn1.addEventListener("click", saveCurrTeamToOne);
+saveTeamBtn2.addEventListener("click", saveCurrTeamToTwo);
 
 fetchPokemonNames();
+
+function saveCurrTeamToOne(){
+    if(currTeam.length < 6){
+        window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
+    }else{
+        for(let i = 0; i < currTeam.length; i++){
+            pkmTeam1.push(currTeam[i]);
+        }
+
+        currTeam.length = 0; //clearing the currentTeam
+        const pkmImages = document.getElementById("team1");
+        
+        while(pkmImages.firstChild){
+            pkmImages.removeChild(pkmImages.firstChild);
+        }
+    }
+}
+
+function saveCurrTeamToTwo(){
+    
+}
 
 function displayPokemonImage(){
 
