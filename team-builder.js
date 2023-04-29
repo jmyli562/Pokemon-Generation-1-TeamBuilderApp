@@ -24,7 +24,7 @@ function displayPokemonImage(){
     .then((mons)=>{
         const learnedMoves = mons.moves;
         img.src = mons.sprites.front_default;
-        img.style = "width:300px;height:300px;";
+        img.style = "width:250px;height:250px;";
         p.textContent = `Name: ${pokemonName}\n`;
         p1.textContent = `Type 1: ${mons.types[0].type.name}`;
 
@@ -36,36 +36,30 @@ function displayPokemonImage(){
 
         p3.textContent = `Ability: ${mons.abilities[0].ability.name}`;
 
-        //displayMoves(learnedMoves);
+        displayMoves(learnedMoves);
     })
 }
 
 function displayMoves(moves){
-    
-    const div = document.getElementById("pokemon-move-list");
-    const move1 = document.getElementById("move1");
-    move1.style = "";
-    const move2 = document.getElementById("move2");
-    move2.style = "";
-    const move3 = document.getElementById("move3");
-    move3.style = "";
-    const move4 = document.getElementById("move4");
-    move4.style = "";
-
-    div.appendChild(move1);
-    div.appendChild(move2);
-    div.appendChild(move3);
-    div.appendChild(move4);
 
     moves.forEach((move)=>{
-        const option = document.createElement("option");
-        option.value = move.move.name;
-        option.textContent = move.move.name;
+        const option1 = document.createElement("option");
+        const option2 = document.createElement("option");
+        const option3 = document.createElement("option");
+        const option4 = document.createElement("option");
+        option1.value = move.move.name;
+        option1.textContent = move.move.name;
+        option2.value = move.move.name;
+        option2.textContent = move.move.name;
+        option3.value = move.move.name;
+        option3.textContent = move.move.name;
+        option4.value = move.move.name;
+        option4.textContent = move.move.name;
         
-        move1.appendChild(option);
-        move2.appendChild(option);
-        move3.appendChild(option);
-        move4.appendChild(option);
+        move1.appendChild(option1);
+        move2.appendChild(option2);
+        move3.appendChild(option3);
+        move4.appendChild(option4);
     })
 }
 
