@@ -95,20 +95,25 @@ function addPokemonToTeam(){
 
         pkmTeam1.push(currPokemon);
         displayTeam(pkmTeam1);
-
         currPokemon = {};
-        
     }
 }
 
 function displayTeam(arr){
-    
-    arr.forEach((pokemon, index)=>{ //challenge!
-        const grabDiv = document.getElementById("team1");
-        const img = document.createElement("img");
-        img.src = pokemon.image;
-        grabDiv.appendChild(img);
-    })
+    for(let i = 0; i < arr.length; i++){
+        if(arr.length !== 1){
+            i = arr.length -1;
+            const grabDiv = document.getElementById("team1");
+            const img = document.createElement("img");
+            img.src = arr[i].image;
+            grabDiv.appendChild(img);
+        }else{
+            const grabDiv = document.getElementById("team1");
+            const img = document.createElement("img");
+            img.src = arr[i].image;
+            grabDiv.appendChild(img);
+        }
+    }
 }
 
 function checkIfMaxReached(arr){
