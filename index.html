@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
         <title>Gen 1 Pokemon Team Builder</title>
+        
         <link rel="stylesheet" href="style.css">
         <body>
+            <style>
+                @import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+                </style>
             <div class = "pokemon-header">
-                <h1>Welcome to my Generation 1 Pokemon Team Builder App!</h1>
+                <h1 style="color:white">Welcome to my Generation 1 Pokemon Team Builder App!</h1>
             </div>
             <br>
             <div class = "team-builder">
-                <h1>Build your team here!</h1>
+                <h1 class = "header-1">Build your team here!</h1>
                 <label for="pokemon">Choose a Pokemon to add to your team:</label>
 
                 <select name="pokemon-list" id="pokemon-list">
@@ -18,8 +23,15 @@
                 <div id = "pokemon-image">
                     <img id = "image"/>
                     <p id = "name"></p>
-                    <p id = "ability1"></p>
-                    <p id = "ability2"></p>
+                    <p id = "type1"></p>
+                    <p id = "type2"></p>
+                    <p id = "ability"></p>
+                </div>
+                <div id = "pokemon-move-list">
+                    <select name="move1" id="move1" style="display:none"></select>
+                    <select name="move2" id="move2" style="display:none"></select>
+                    <select name="move3" id="move3" style="display:none"></select>
+                    <select name="move4" id="move4" style="display:none"></select>
                 </div>
                 <br>
                 <button id ="add-pokemon">Add Pokemon to team</button>

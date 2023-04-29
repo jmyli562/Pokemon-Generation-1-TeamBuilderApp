@@ -1,16 +1,48 @@
 .pokemon-header {
-    background-color: yellow;
+    font-family: 'Pokemon Solid', sans-serif;
+    background-color: rgb(58, 143, 177);
     text-align: center;
     margin: auto;
     width: 50%;
-    border: 5px solid gray;
+    border: 5px solid rgb(77, 54, 5);
+}
+
+.team-builder{
+    float: left;
+    padding-left: 100px;
+    width: 50%;
 }
 
 body {
-    background-color: red;
+    background-image: url("https://wallpaperaccess.com/full/45635.jpg");
 }
 
 #add-pokemon{
   margin: 0;
   top: 50%;
+}
+
+#name{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+
+#type1{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+
+#type2{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+
+#ability{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+.header-1{
+    font-family: 'Pokemon Solid', sans-serif;
+    color: rgb(63, 9, 9);
+    font-size: 40px;
 }
