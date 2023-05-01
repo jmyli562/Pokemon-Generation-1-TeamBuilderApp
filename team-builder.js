@@ -34,7 +34,12 @@ saveTeamBtn2.addEventListener("click", saveCurrTeamToTwo);
 showTeamBtn1.addEventListener("click", displayTeamOne);
 showTeamBtn2.addEventListener("click", displayTeamTwo);
 
+//zoomPageOut(); //will set the zoom of the page automaticallyo to 75% to make the page look nice
 fetchPokemonNames();
+
+function zoomPageOut(){
+    document.body.style.zoom = "80%";
+}
 
 function displayTeamOne(){
     chosenTeam = 1;
