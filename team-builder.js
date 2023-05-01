@@ -4,7 +4,6 @@ const pkmTeam1 = [];
 const pkmTeam2 = []; 
 const currTeam = []; //an array that will hold pokemon objects of the users selected team of pokemon
 let currPokemon = {};
-let numTeamsCreated = 0;
 
 const teamPreview = document.getElementById("team-viewer");
 const saveTeamBtn1 = document.getElementById("add-team1");
@@ -70,7 +69,46 @@ function displayTeam(arr, team){
 }
 
 function writeTeamOneToServer(){ //we need to make a POST request
-    fetch("http://localhost:3000/Team1")
+
+    pkmTeam1.forEach((member)=>{
+        fetch("http://localhost:3000/Team1", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(member),
+        });
+    });
+}
+
+function writeTeamTwoToServer(){ //we need to make a POST request
+    debugger;
+    pkmTeam2.forEach((member)=>{
+        fetch("http://localhost:3000/Team2", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(member),
+        })
+    });
+}
+
+function deleteTeamOneFromServer(){
+    let id = 1;
+    pkmTeam1.forEach(()=>{
+        fetch(`http://localhost:3000/Team1/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+        });
+
+        id+=1;
+    });
 }
 
 function saveCurrTeamToOne(){
@@ -80,6 +118,8 @@ function saveCurrTeamToOne(){
 
         if(pkmTeam1.length === 6){ //checking if team 1 already has something saved to it
             if(window.confirm("Do you want to overwrite this team to team 1?")){
+
+                //deleteTeamOneFromServer();
                 pkmTeam1.length = 0;
 
                 for(let i = 0; i < currTeam.length; i++){
@@ -104,6 +144,8 @@ function saveCurrTeamToOne(){
             for(let i = 0; i < currTeam.length; i++){
                 pkmTeam1.push(currTeam[i]);
             }
+
+            writeTeamOneToServer();
     
             window.alert("Team saved to slot 1");
     
@@ -122,18 +164,20 @@ function saveCurrTeamToTwo(){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
 
-        if(pkmTeam2.length === 6){ //checking if team 1 already has something saved to it
+        if(pkmTeam2.length === 6){ //checking if team 2 already has something saved to it
             if(window.confirm("Do you want to overwrite this team to team 2?")){
                 pkmTeam2.length = 0;
 
                 for(let i = 0; i < currTeam.length; i++){
                     pkmTeam2.push(currTeam[i]);
                 }
+
+                writeTeamTwoToServer();
         
-                window.alert("Team saved to slot 1");
+                window.alert("Team saved to slot 2");
         
                 currTeam.length = 0; //clearing the currentTeam
-                const pkmImages = document.getElementById("team2");
+                const pkmImages = document.getElementById("team1");
                 
                 while(pkmImages.firstChild){
                     pkmImages.removeChild(pkmImages.firstChild);
@@ -146,8 +190,10 @@ function saveCurrTeamToTwo(){
             for(let i = 0; i < currTeam.length; i++){
                 pkmTeam2.push(currTeam[i]);
             }
+
+            writeTeamTwoToServer();
     
-            window.alert("Team saved to slot 1");
+            window.alert("Team saved to slot 2");
     
             currTeam.length = 0; //clearing the currentTeam
             const pkmImages = document.getElementById("team1");
@@ -252,15 +298,7 @@ function addPokemonToTeam(){
 
 function previewTeam(arr){
     for(let i = 0; i < arr.length; i++){
-        if(numTeamsCreated > 0){
-            i = arr.length - 1;
-            const grabDiv = document.getElementById("team2");
-            const img = document.createElement("img");
-            img.src = arr[i].image;
-            img.addEventListener("click", viewPokemonStats);
-            img.addEventListener("dblclick", deletePokemonFromTeam);
-            grabDiv.appendChild(img);
-        }else{
+
             i = arr.length - 1;
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
@@ -269,7 +307,6 @@ function previewTeam(arr){
             img.addEventListener("dblclick", deletePokemonFromTeam);
             grabDiv.appendChild(img);
         }
-    }
 }
 
 function viewPokemonStats(){
