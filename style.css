@@ -75,26 +75,10 @@ body {
 
 #team-display{
     display: flex;
-}
-#add-team2{
-    position: relative;
-    left: 500px;
-    display: block;
-}
-#add-team1{
-    position: relative;
-    left: 500px;
-    display: block;
+    flex-direction: row;
 }
 
-#show-team2{
-    position: relative;
-    left: 500px;
-    display: block;
-}
-
-#show-team1{
-    position: relative;
-    left: 500px;
-    display: block;
+.buttons {
+    display:flex;
+    flex-direction: column;
 }

@@ -1,4 +1,77 @@
 {
-  "Team1": [],
+  "Team1": [
+    {
+      "name": "tentacool",
+      "type1": "water",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
+      "type2": "poison",
+      "ability": "clear-body",
+      "move1": "swords-dance",
+      "move2": "swords-dance",
+      "move3": "swords-dance",
+      "move4": "swords-dance",
+      "id": 1
+    },
+    {
+      "name": "bulbasaur",
+      "type1": "grass",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+      "type2": "poison",
+      "ability": "overgrow",
+      "move1": "razor-wind",
+      "move2": "razor-wind",
+      "move3": "razor-wind",
+      "move4": "razor-wind",
+      "id": 2
+    },
+    {
+      "name": "mr-mime",
+      "type1": "psychic",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png",
+      "type2": "fairy",
+      "ability": "soundproof",
+      "move1": "pound",
+      "move2": "pound",
+      "move3": "pound",
+      "move4": "pound",
+      "id": 3
+    },
+    {
+      "name": "zapdos",
+      "type1": "electric",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
+      "type2": "flying",
+      "ability": "pressure",
+      "move1": "razor-wind",
+      "move2": "razor-wind",
+      "move3": "razor-wind",
+      "move4": "razor-wind",
+      "id": 4
+    },
+    {
+      "name": "clefable",
+      "type1": "fairy",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png",
+      "type2": null,
+      "ability": "cute-charm",
+      "move1": "pound",
+      "move2": "pound",
+      "move3": "pound",
+      "move4": "pound",
+      "id": 5
+    },
+    {
+      "name": "rhyhorn",
+      "type1": "ground",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png",
+      "type2": "rock",
+      "ability": "lightning-rod",
+      "move1": "swords-dance",
+      "move2": "swords-dance",
+      "move3": "swords-dance",
+      "move4": "swords-dance",
+      "id": 6
+    }
+  ],
   "Team2": []
 }

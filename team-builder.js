@@ -36,7 +36,7 @@ showTeamBtn2.addEventListener("click", displayTeamTwo);
 
 //zoomPageOut(); //will set the zoom of the page automaticallyo to 75% to make the page look nice
 fetchPokemonNames();
-deleteTeamOneFromServer();
+//deleteTeamOneFromServer();
 /*
 function zoomPageOut(){
     document.body.style.zoom = "80%";
@@ -46,33 +46,38 @@ function zoomPageOut(){
 
 function displayTeamOne(){
     chosenTeam = 1;
-    displayTeam(pkmTeam1, chosenTeam);
+    displayTeam(chosenTeam);
 }
 
 function displayTeamTwo(){
     chosenTeam = 2;
-    displayTeam(pkmTeam2, chosenTeam);
+    displayTeam(chosenTeam);
 }
 
-function displayTeam(arr, team){
-    if(team === 1){ //should be making a fetch request to localhost:3000/team1
-        for(let i = 0; i < arr.length; i++){
+function displayTeam(team){
+    if(team === 1){     
+        fetch("http://localhost:3000/Team1")
+        .then(resp=>resp.json())
+        .then(data=>data.forEach((member)=>{
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
-            img.src = arr[i].image;
+            img.src = member.image;
             img.addEventListener("click", viewPokemonStats);
             img.addEventListener("dblclick", deletePokemonFromTeam);
             grabDiv.appendChild(img);
-        }
+        }))
+
     }else{
-        for(let i = 0; i < arr.length; i++){
+        fetch("http://localhost:3000/Team2")
+        .then(resp=>resp.json())
+        .then(data=>data.forEach((member)=>{
             const grabDiv = document.getElementById("team2");
             const img = document.createElement("img");
-            img.src = arr[i].image;
+            img.src = member.image;
             img.addEventListener("click", viewPokemonStats);
             img.addEventListener("dblclick", deletePokemonFromTeam);
             grabDiv.appendChild(img);
-        }
+        }))
     }
 }
 
@@ -119,6 +124,22 @@ function deleteTeamOneFromServer(){
     }))
 }
 
+function deleteTeamTwoFromServer(){
+
+    fetch("http://localhost:3000/Team2")
+    .then(resp=>resp.json())
+    .then(team => team.forEach((member)=>{
+        let id = member.id;
+        fetch(`http://localhost:3000/Team2/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+        });
+    }))
+}
+
 function saveCurrTeamToOne(){
     if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
@@ -128,6 +149,7 @@ function saveCurrTeamToOne(){
             if(window.confirm("Do you want to overwrite this team to team 1?")){
 
                 deleteTeamOneFromServer();
+                
                 pkmTeam1.length = 0;
 
                 for(let i = 0; i < currTeam.length; i++){
@@ -323,7 +345,7 @@ function viewPokemonStats(){
 }
 
 function deletePokemonFromTeam(e){ //should delete the pokemon on the webpage as well as on the backend
-
+    //console.log(e.target.parentNode);
     if(window.confirm("Are you sure you want to delete this Pokemon from your team?")){
         for(let i = 0; i < currTeam.length; i++){
             if(e.target.src === currTeam[i].image){
@@ -332,10 +354,7 @@ function deletePokemonFromTeam(e){ //should delete the pokemon on the webpage as
                 e.target.remove();
             }
         }
-    }else{
-
     }
-
 }
 
 function checkIfMaxReached(arr){
