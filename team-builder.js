@@ -36,10 +36,13 @@ showTeamBtn2.addEventListener("click", displayTeamTwo);
 
 //zoomPageOut(); //will set the zoom of the page automaticallyo to 75% to make the page look nice
 fetchPokemonNames();
-
+deleteTeamOneFromServer();
+/*
 function zoomPageOut(){
     document.body.style.zoom = "80%";
 }
+
+*/
 
 function displayTeamOne(){
     chosenTeam = 1;
@@ -52,7 +55,7 @@ function displayTeamTwo(){
 }
 
 function displayTeam(arr, team){
-    if(team === 1){
+    if(team === 1){ //should be making a fetch request to localhost:3000/team1
         for(let i = 0; i < arr.length; i++){
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
@@ -73,7 +76,7 @@ function displayTeam(arr, team){
     }
 }
 
-function writeTeamOneToServer(){ //we need to make a POST request
+function writeTeamOneToServer(){
 
     pkmTeam1.forEach((member)=>{
         fetch("http://localhost:3000/Team1", {
@@ -88,7 +91,6 @@ function writeTeamOneToServer(){ //we need to make a POST request
 }
 
 function writeTeamTwoToServer(){ //we need to make a POST request
-    debugger;
     pkmTeam2.forEach((member)=>{
         fetch("http://localhost:3000/Team2", {
             method: "POST",
@@ -102,8 +104,11 @@ function writeTeamTwoToServer(){ //we need to make a POST request
 }
 
 function deleteTeamOneFromServer(){
-    let id = 1;
-    pkmTeam1.forEach(()=>{
+
+    fetch("http://localhost:3000/Team1")
+    .then(resp=>resp.json())
+    .then(team => team.forEach((member)=>{
+        let id = member.id;
         fetch(`http://localhost:3000/Team1/${id}`, {
             method: "DELETE",
             headers: {
@@ -111,9 +116,7 @@ function deleteTeamOneFromServer(){
                 "Accept": "application/json",
             },
         });
-
-        id+=1;
-    });
+    }))
 }
 
 function saveCurrTeamToOne(){
@@ -124,7 +127,7 @@ function saveCurrTeamToOne(){
         if(pkmTeam1.length === 6){ //checking if team 1 already has something saved to it
             if(window.confirm("Do you want to overwrite this team to team 1?")){
 
-                //deleteTeamOneFromServer();
+                deleteTeamOneFromServer();
                 pkmTeam1.length = 0;
 
                 for(let i = 0; i < currTeam.length; i++){
@@ -311,7 +314,7 @@ function previewTeam(arr){
             img.addEventListener("click", viewPokemonStats);
             img.addEventListener("dblclick", deletePokemonFromTeam);
             grabDiv.appendChild(img);
-        }
+    }
 }
 
 function viewPokemonStats(){
