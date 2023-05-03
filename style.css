@@ -73,12 +73,16 @@ body {
     color:rgb(50, 146, 190)
 }
 
-#team-display{
+
+.Team-1-Display{
     display: flex;
+    gap: 10px;
     flex-direction: row;
 }
 
-.buttons {
-    display:flex;
-    flex-direction: column;
+
+.Team-2-Display{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
 }

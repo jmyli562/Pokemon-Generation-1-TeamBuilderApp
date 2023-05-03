@@ -140,13 +140,33 @@ function deleteTeamTwoFromServer(){
     }))
 }
 
-function saveCurrTeamToOne(){
+function checkIfTeamOneIsFull(){
+    let full;
+    let arr = [];
+
+    return fetch("http://localhost:3000/Team1")
+    .then(resp=>resp.json())
+    .then(function(data){
+        arr = [... data];
+        if(arr.length >= 6){
+            full = true;
+        }else{
+            full = false;
+        }
+
+        return full;
+    });
+}
+
+function saveCurrTeamToOne(e){
+
+    e.stopPropagation();
+
     if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
-
-        if(pkmTeam1.length === 6){ //checking if team 1 already has something saved to it
-            if(window.confirm("Do you want to overwrite this team to team 1?")){
+        if(checkIfTeamOneIsFull()){ //checking if team 1 already has something saved to it
+            if(window.confirm("There is already a team saved to Team 1. Do you want to overwrite this team to team 1?")){
 
                 deleteTeamOneFromServer();
                 
@@ -189,7 +209,10 @@ function saveCurrTeamToOne(){
     }
 }
 
-function saveCurrTeamToTwo(){
+function saveCurrTeamToTwo(e){
+
+    e.stopPropagation();
+
     if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
