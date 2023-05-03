@@ -10,6 +10,8 @@ const saveTeamBtn1 = document.getElementById("add-team1");
 const saveTeamBtn2 = document.getElementById("add-team2");
 const showTeamBtn1 = document.getElementById("show-team1");
 const showTeamBtn2 = document.getElementById("show-team2");
+const clearTeamBtn1 = document.getElementById("clear-team1");
+const clearTeamBtn2 = document.getElementById("clear-team2");
 
 const move1 = document.getElementById("move1");
 const move2 = document.getElementById("move2");
@@ -30,6 +32,14 @@ slctDropDown.addEventListener("change", displayPokemonImage)
 addPkmBtn.addEventListener("click", addPokemonToTeam);
 saveTeamBtn1.addEventListener("click", saveCurrTeamToOne);
 saveTeamBtn2.addEventListener("click", saveCurrTeamToTwo);
+clearTeamBtn1.addEventListener("click", ()=>{
+    deleteTeamOneFromServer();
+    window.alert("Team One Cleared!");
+});
+clearTeamBtn2.addEventListener("click", ()=>{
+    deleteTeamTwoFromServer();
+    window.alert("Team Two Cleared!");
+});
 
 showTeamBtn1.addEventListener("click", displayTeamOne);
 showTeamBtn2.addEventListener("click", displayTeamTwo);
@@ -166,7 +176,7 @@ function saveCurrTeamToOne(e){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
         if(checkIfTeamOneIsFull()){ //checking if team 1 already has something saved to it
-            if(window.confirm("There is already a team saved to Team 1. Do you want to overwrite this team to team 1?")){
+            if(window.confirm("There is already a team saved to Team 1. Do you want to overwrite this team to Team 1?")){
 
                 deleteTeamOneFromServer();
                 
