@@ -150,43 +150,65 @@ function deleteTeamTwoFromServer(){
     }))
 }
 
-function checkIfTeamOneIsFull(){
-    let full;
-    let arr = [];
+async function checkIfTeamOneIsFull(){
+
+    let isFull;
 
     return fetch("http://localhost:3000/Team1")
-    .then(resp=>resp.json())
-    .then(function(data){
-        arr = [... data];
-        if(arr.length >= 6){
-            full = true;
-        }else{
-            full = false;
-        }
+    .then((resp)=>{
+        return resp.json().then((data)=>{
+            if(data.length >= 6){
+                isFull = true;
+            }else{
+                isFull = false;
+            }
 
-        return full;
-    });
+            return isFull;
+        })
+    })
 }
 
-function saveCurrTeamToOne(e){
-
-    e.stopPropagation();
+function saveCurrTeamToOne(){
 
     if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
-        if(checkIfTeamOneIsFull()){ //checking if team 1 already has something saved to it
-            if(window.confirm("There is already a team saved to Team 1. Do you want to overwrite this team to Team 1?")){
+        checkIfTeamOneIsFull().then((isFull)=>{
+            if(isFull){ //checking if team 1 already has something saved to it
+                if(window.confirm("There is already a team saved to Team 1. Do you want to overwrite this team to Team 1?")){
+    
+                    deleteTeamOneFromServer();
+                    
+                    pkmTeam1.length = 0;
+    
+                    for(let i = 0; i < currTeam.length; i++){
+                        pkmTeam1.push(currTeam[i]);
+                    }
+    
+                    writeTeamOneToServer();
 
-                deleteTeamOneFromServer();
-                
-                pkmTeam1.length = 0;
-
+                    pkmTeam1.length = 0;
+            
+                    window.alert("Team saved to slot 1");
+            
+                    currTeam.length = 0; //clearing the currentTeam
+                    const pkmImages = document.getElementById("team1");
+                    
+                    while(pkmImages.firstChild){
+                        pkmImages.removeChild(pkmImages.firstChild);
+                    }
+    
+                }else{
+                    window.alert("Team is full. Please clear team 1 to save your team");
+                }
+            }else{
                 for(let i = 0; i < currTeam.length; i++){
                     pkmTeam1.push(currTeam[i]);
                 }
-
+    
                 writeTeamOneToServer();
+
+                pkmTeam1.length = 0;
         
                 window.alert("Team saved to slot 1");
         
@@ -196,32 +218,12 @@ function saveCurrTeamToOne(e){
                 while(pkmImages.firstChild){
                     pkmImages.removeChild(pkmImages.firstChild);
                 }
-
-            }else{
-                window.alert("Team is full. Please clear team 1 to save your team");
             }
-        }else{
-            for(let i = 0; i < currTeam.length; i++){
-                pkmTeam1.push(currTeam[i]);
-            }
-
-            writeTeamOneToServer();
-    
-            window.alert("Team saved to slot 1");
-    
-            currTeam.length = 0; //clearing the currentTeam
-            const pkmImages = document.getElementById("team1");
-            
-            while(pkmImages.firstChild){
-                pkmImages.removeChild(pkmImages.firstChild);
-            }
-        }
+        })
     }
 }
 
-function saveCurrTeamToTwo(e){
-
-    e.stopPropagation();
+function saveCurrTeamToTwo(){
 
     if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
