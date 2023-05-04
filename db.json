@@ -1,18 +1,6 @@
 {
   "Team1": [
     {
-      "name": "muk",
-      "type1": "poison",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png",
-      "type2": null,
-      "ability": "stench",
-      "move1": "pound",
-      "move2": "pound",
-      "move3": "pound",
-      "move4": "pound",
-      "id": 1
-    },
-    {
       "name": "ponyta",
       "type1": "fire",
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",

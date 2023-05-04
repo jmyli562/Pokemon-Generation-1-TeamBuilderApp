@@ -5,6 +5,8 @@ const pkmTeam2 = [];
 const currTeam = []; //an array that will hold pokemon objects of the users selected team of pokemon
 let currPokemon = {};
 
+const modal = document.getElementById("pkmModal");
+const close = document.querySelector(".close");
 const teamPreview = document.getElementById("team-viewer");
 const editTeamBtn1 = document.getElementById("edit-team1");
 const editTeamBtn2 = document.getElementById("edit-team2");
@@ -36,12 +38,14 @@ slctDropDown.addEventListener("change", displayPokemonImage)
 addPkmBtn.addEventListener("click", addPokemonToTeam);
 saveTeamBtn1.addEventListener("click", saveCurrTeamToOne);
 saveTeamBtn2.addEventListener("click", saveCurrTeamToTwo);
-editTeamBtn1.addEventListener("click", ()=>{
+close.addEventListener("click", showModal);
+editTeamBtn1.addEventListener("click", (e)=>{
     displayTeamOne();
     window.alert("Please click on a Pokemon to edit its moves or replace it.");
 });
 editTeamBtn2.addEventListener("click", ()=>{
     displayTeamTwo();
+    window.alert("Please click on a Pokemon to edit its moves or replace it.");
 });
 clearTeamBtn1.addEventListener("click", ()=>{
     deleteTeamOneFromServer();
@@ -415,32 +419,45 @@ function previewTeam(arr){
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
             img.src = arr[i].image;
-            //img.addEventListener("click", viewPokemonStats);
-            //img.addEventListener("dblclick", deletePokemonFromTeam);
             grabDiv.appendChild(img);
     }
 }
 
-function viewClickedPokemonTeam1(e){
+function showModal(){
+    modal.classList.toggle("show-modal");
+}
 
+function viewClickedPokemonTeam1(e){
     e.stopPropagation();
     let slctedPokemon = e.target.src;
-    console.log(slctedPokemon);
     const modal = document.getElementById("pkmModal");
-    modal.classList.toggle("show-modal");
+    showModal();
 
     fetch("http://localhost:3000/Team1")
     .then(resp=>resp.json())
     .then((data)=>{
         data.forEach((member)=>{
             if(slctedPokemon === member.image){
+
                 const modalContent = document.getElementsByClassName("modal-content")[0];
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Delete Pokemon";
+                const updateBtn = document.createElement("button");
+                updateBtn.textContent = "Update Moves";
                 const pkmImage = document.createElement("img");
                 pkmImage.src = member.image;
                 const modalText = document.createElement("p");
                 modalText.textContent = `What would you like to do with ${member.name}?`
+
                 modalContent.appendChild(modalText);
                 modalContent.appendChild(pkmImage);
+                modalContent.appendChild(deleteBtn);
+                modalContent.appendChild(updateBtn);
+
+                deleteBtn.addEventListener("click", (e)=>{
+                    e.stopPropagation();
+                    deletePokemonFromTeam(member);
+                })
             }
         })
     })
@@ -452,17 +469,25 @@ function viewClickedPokemonTeam2(e){
     modal.classList.toggle("show-modal");
 }
 
-function deletePokemonFromTeam(e){ //should delete the pokemon on the webpage as well as on the backend
+function deletePokemonFromTeam(pkm){ //should delete the pokemon on the webpage as well as on the backend
     //console.log(e.target.parentNode);
-    if(window.confirm("Are you sure you want to delete this Pokemon from your team?")){
-        for(let i = 0; i < currTeam.length; i++){
-            if(e.target.src === currTeam[i].image){
-                const index = currTeam.indexOf(currTeam[i]);
-                currTeam.splice(index, 1);
-                e.target.remove();
-            }
-        }
+
+    const team1Images = document.getElementById("team1").children;
+
+    for(let images of team1Images){
+       if(images.currentSrc === pkm.image){
+            images.remove();
+       }
     }
+
+    fetch(`http://localhost:3000/Team1/${pkm.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(resp=>resp.json())
+    .then((pokemon) => console.log(pokemon))
 }
 
 function checkIfMaxReached(arr){
