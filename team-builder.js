@@ -6,6 +6,8 @@ const currTeam = []; //an array that will hold pokemon objects of the users sele
 let currPokemon = {};
 
 const teamPreview = document.getElementById("team-viewer");
+const editTeamBtn1 = document.getElementById("edit-team1");
+const editTeamBtn2 = document.getElementById("edit-team2");
 const saveTeamBtn1 = document.getElementById("add-team1");
 const saveTeamBtn2 = document.getElementById("add-team2");
 const showTeamBtn1 = document.getElementById("show-team1");
@@ -34,6 +36,13 @@ slctDropDown.addEventListener("change", displayPokemonImage)
 addPkmBtn.addEventListener("click", addPokemonToTeam);
 saveTeamBtn1.addEventListener("click", saveCurrTeamToOne);
 saveTeamBtn2.addEventListener("click", saveCurrTeamToTwo);
+editTeamBtn1.addEventListener("click", ()=>{
+    displayTeamOne();
+    window.alert("Please click on a Pokemon to edit its moves or replace it.");
+});
+editTeamBtn2.addEventListener("click", ()=>{
+    displayTeamTwo();
+});
 clearTeamBtn1.addEventListener("click", ()=>{
     deleteTeamOneFromServer();
     
@@ -86,8 +95,7 @@ function displayTeam(team){
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
             img.src = member.image;
-            img.addEventListener("click", viewPokemonStats);
-            img.addEventListener("dblclick", deletePokemonFromTeam);
+            img.addEventListener("click", viewClickedPokemonTeam1);
             grabDiv.appendChild(img);
         }))
 
@@ -98,8 +106,7 @@ function displayTeam(team){
             const grabDiv = document.getElementById("team2");
             const img = document.createElement("img");
             img.src = member.image;
-            img.addEventListener("click", viewPokemonStats);
-            img.addEventListener("dblclick", deletePokemonFromTeam);
+            img.addEventListener("click", viewClickedPokemonTeam2);
             grabDiv.appendChild(img);
         }))
     }
@@ -414,9 +421,35 @@ function previewTeam(arr){
     }
 }
 
-function viewPokemonStats(){
+function viewClickedPokemonTeam1(e){
 
-    console.log("Entered viewPokemonStats");
+    e.stopPropagation();
+    let slctedPokemon = e.target.src;
+    console.log(slctedPokemon);
+    const modal = document.getElementById("pkmModal");
+    modal.classList.toggle("show-modal");
+
+    fetch("http://localhost:3000/Team1")
+    .then(resp=>resp.json())
+    .then((data)=>{
+        data.forEach((member)=>{
+            if(slctedPokemon === member.image){
+                const modalContent = document.getElementsByClassName("modal-content")[0];
+                const pkmImage = document.createElement("img");
+                pkmImage.src = member.image;
+                const modalText = document.createElement("p");
+                modalText.textContent = `What would you like to do with ${member.name}?`
+                modalContent.appendChild(modalText);
+                modalContent.appendChild(pkmImage);
+            }
+        })
+    })
+}
+
+function viewClickedPokemonTeam2(e){
+    console.log(e.target.src);
+    const modal = document.getElementById("pkmModal");
+    modal.classList.toggle("show-modal");
 }
 
 function deletePokemonFromTeam(e){ //should delete the pokemon on the webpage as well as on the backend
