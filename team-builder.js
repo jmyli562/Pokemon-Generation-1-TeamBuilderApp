@@ -4,6 +4,8 @@ const pkmTeam1 = [];
 const pkmTeam2 = []; 
 const currTeam = []; //an array that will hold pokemon objects of the users selected team of pokemon
 let currPokemon = {};
+const membersToUpdate = [];
+let wasEdited = false;
 
 const modal = document.getElementById("pkmModal");
 const close = document.querySelector(".close");
@@ -99,7 +101,7 @@ function displayTeam(team){
         fetch("http://localhost:3000/Team1")
         .then(resp=>resp.json())
         .then(data=>data.forEach((member)=>{
-            currTeam.push(member);
+            //currTeam.push(member);
             const grabDiv = document.getElementById("team1");
             const img = document.createElement("img");
             img.src = member.image;
@@ -111,7 +113,7 @@ function displayTeam(team){
         fetch("http://localhost:3000/Team2")
         .then(resp=>resp.json())
         .then(data=>data.forEach((member)=>{
-            currTeam.push(member);
+            //currTeam.push(member);
             const grabDiv = document.getElementById("team2");
             const img = document.createElement("img");
             img.src = member.image;
@@ -222,12 +224,33 @@ async function checkIfTeamTwoIsFull(){
     })
 }
 
+function updateTeam1Member(){
+
+    membersToUpdate.forEach((member, index)=>{
+        fetch(`http://localhost:3000/Team1/${member.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(currTeam[index])
+        })
+        .then(resp=>resp.json())
+        .then(pokemon=>console.log(pokemon))
+    })
+}
+
 function saveCurrTeamToOne(){
 
-    if(currTeam.length < 6){
+    if(wasEdited){
+        updateTeam1Member();
+        window.alert("Team 1 was updated with the new pokemon.")
+    }
+    else if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
         checkIfTeamOneIsFull().then((isFull)=>{
+
             if(isFull){ //checking if team 1 already has something saved to it
                 if(window.confirm("There is already a team saved to Team 1. Do you want to overwrite this team to Team 1?")){
     
@@ -552,7 +575,7 @@ function viewClickedPokemonTeam2(e){
 
 function deletePokemonFromTeam1(pkm){ //should delete the pokemon on the webpage as well as on the backend
     //console.log(e.target.parentNode);
-
+    membersToUpdate.push(pkm);
     const team1Images = document.getElementById("team1").children;
 
     for(let images of team1Images){
@@ -566,8 +589,8 @@ function deletePokemonFromTeam1(pkm){ //should delete the pokemon on the webpage
             currTeam.splice(currTeam[index], 1);
         }
     })
-
-    fetch(`http://localhost:3000/Team1/${pkm.id}`, {
+    /*
+    fetch(`http://localhost:3000/Team1/${pkm.id}`, { 
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -575,17 +598,19 @@ function deletePokemonFromTeam1(pkm){ //should delete the pokemon on the webpage
     })
     .then(resp=>resp.json())
     .then((pokemon) => console.log(pokemon))
-
+    */
     window.alert("Pokemon Deleted");
     window.alert("Please add a new member(s) using the build team section until the team is full then click save to team 1 or 2");
     showModal();
     removeModalContent();
+
+    wasEdited = true;
 }
 
 function deletePokemonFromTeam2(pkm){
-    const team1Images = document.getElementById("team2").children;
+    const team2Images = document.getElementById("team2").children;
 
-    for(let images of team1Images){
+    for(let images of team2Images){
        if(images.currentSrc === pkm.image){
             images.remove();
        }
@@ -610,6 +635,8 @@ function deletePokemonFromTeam2(pkm){
     window.alert("Please add a new member(s) using the build team section until the team is full then click save to team 1 or 2");
     showModal();
     removeModalContent();
+
+    wasEdited = true;
 }
 
 function checkIfMaxReached(arr){
