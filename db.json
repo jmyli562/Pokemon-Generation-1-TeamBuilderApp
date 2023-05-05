@@ -1,11 +1,11 @@
 {
   "Team1": [
     {
-      "name": "cubone",
-      "type1": "ground",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png",
+      "name": "charmeleon",
+      "type1": "fire",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
       "type2": null,
-      "ability": "rock-head",
+      "ability": "blaze",
       "move1": "mega-punch",
       "move2": "mega-punch",
       "move3": "mega-punch",
@@ -13,23 +13,97 @@
       "id": 1
     },
     {
-      "name": "beedrill",
-      "type1": "bug",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
-      "type2": "poison",
-      "ability": "swarm",
-      "move1": "swords-dance",
-      "move2": "swords-dance",
-      "move3": "swords-dance",
-      "move4": "swords-dance",
+      "name": "jigglypuff",
+      "type1": "normal",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
+      "type2": "fairy",
+      "ability": "cute-charm",
+      "move1": "pound",
+      "move2": "pound",
+      "move3": "pound",
+      "move4": "pound",
       "id": 2
     },
     {
-      "name": "dodrio",
-      "type1": "normal",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png",
-      "type2": "flying",
+      "name": "seadra",
+      "type1": "water",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png",
+      "type2": null,
+      "ability": "poison-point",
+      "move1": "headbutt",
+      "move2": "headbutt",
+      "move3": "headbutt",
+      "move4": "headbutt",
+      "id": 3
+    },
+    {
+      "name": "ponyta",
+      "type1": "fire",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",
+      "type2": null,
       "ability": "run-away",
+      "move1": "stomp",
+      "move2": "stomp",
+      "move3": "stomp",
+      "move4": "stomp",
+      "id": 4
+    },
+    {
+      "name": "electrode",
+      "type1": "electric",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png",
+      "type2": null,
+      "ability": "soundproof",
+      "move1": "headbutt",
+      "move2": "headbutt",
+      "move3": "headbutt",
+      "move4": "headbutt",
+      "id": 5
+    },
+    {
+      "name": "seel",
+      "type1": "water",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png",
+      "type2": null,
+      "ability": "thick-fat",
+      "move1": "pay-day",
+      "move2": "pay-day",
+      "move3": "pay-day",
+      "move4": "pay-day",
+      "id": 6
+    }
+  ],
+  "Team2": [
+    {
+      "name": "charmander",
+      "type1": "fire",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+      "type2": null,
+      "ability": "blaze",
+      "move1": "mega-punch",
+      "move2": "mega-punch",
+      "move3": "mega-punch",
+      "move4": "mega-punch",
+      "id": 1
+    },
+    {
+      "name": "metapod",
+      "type1": "bug",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+      "type2": null,
+      "ability": "shed-skin",
+      "move1": "string-shot",
+      "move2": "string-shot",
+      "move3": "string-shot",
+      "move4": "string-shot",
+      "id": 2
+    },
+    {
+      "name": "tentacool",
+      "type1": "water",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
+      "type2": "poison",
+      "ability": "clear-body",
       "move1": "swords-dance",
       "move2": "swords-dance",
       "move3": "swords-dance",
@@ -37,11 +111,11 @@
       "id": 3
     },
     {
-      "name": "graveler",
-      "type1": "rock",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png",
-      "type2": "ground",
-      "ability": "rock-head",
+      "name": "electabuzz",
+      "type1": "electric",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/125.png",
+      "type2": null,
+      "ability": "static",
       "move1": "mega-punch",
       "move2": "mega-punch",
       "move3": "mega-punch",
@@ -49,29 +123,28 @@
       "id": 4
     },
     {
-      "name": "poliwhirl",
-      "type1": "water",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/61.png",
+      "name": "weezing",
+      "type1": "poison",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png",
       "type2": null,
-      "ability": "water-absorb",
+      "ability": "levitate",
+      "move1": "headbutt",
+      "move2": "headbutt",
+      "move3": "headbutt",
+      "move4": "headbutt",
+      "id": 5
+    },
+    {
+      "name": "drowzee",
+      "type1": "psychic",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/96.png",
+      "type2": null,
+      "ability": "insomnia",
       "move1": "pound",
       "move2": "pound",
       "move3": "pound",
       "move4": "pound",
-      "id": 5
-    },
-    {
-      "name": "paras",
-      "type1": "bug",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png",
-      "type2": "grass",
-      "ability": "effect-spore",
-      "move1": "scratch",
-      "move2": "scratch",
-      "move3": "scratch",
-      "move4": "scratch",
       "id": 6
     }
-  ],
-  "Team2": []
+  ]
 }

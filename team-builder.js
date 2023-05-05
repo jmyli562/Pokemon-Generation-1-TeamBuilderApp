@@ -240,11 +240,30 @@ function updateTeam1Member(){
     })
 }
 
+function updateTeam2Member(){
+
+    membersToUpdate.forEach((member, index)=>{
+        fetch(`http://localhost:3000/Team2/${member.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(currTeam[index])
+        })
+        .then(resp=>resp.json())
+        .then(pokemon=>console.log(pokemon))
+    })
+}
+
 function saveCurrTeamToOne(){
 
     if(wasEdited){
         updateTeam1Member();
         window.alert("Team 1 was updated with the new pokemon.")
+        membersToUpdate.length = 0;
+        currTeam.length = 0;
+        deletePokemonImage();
     }
     else if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
@@ -295,7 +314,14 @@ function saveCurrTeamToOne(){
 }
 
 function saveCurrTeamToTwo(){
-    if(currTeam.length < 6){
+    if(wasEdited){
+        updateTeam2Member();
+        window.alert("Team 2 was updated with the new pokemon.");
+        membersToUpdate.length = 0;
+        currTeam.length = 0;
+        deletePokemonImage();
+    }
+    else if(currTeam.length < 6){
         window.alert("Can't save a team with less than 6 pokemon. Please add more pokemon.");
     }else{
         checkIfTeamTwoIsFull().then((isFull)=>{
@@ -534,7 +560,9 @@ function viewClickedPokemonTeam2(e){
 
                 const modalContent = document.getElementsByClassName("modal-content")[0];
                 const deleteBtn = document.createElement("button");
+                const newMoveBtn = document.createElement("button");
                 const pokemonInfo = document.createElement("p");
+                const breakTag = document.createElement("br");
 
                 pokemonInfo.setAttribute('style', 'white-space: pre;');
                 pokemonInfo.textContent = `Name: ${member.name} \r\n`;
@@ -547,30 +575,42 @@ function viewClickedPokemonTeam2(e){
                 pokemonInfo.textContent+= `Move 4: ${member.move4} \r\n`;
 
                 deleteBtn.textContent = "Delete Pokemon";
+                newMoveBtn.textContent = "Choose new moves";
                 const updateBtn = document.createElement("button");
                 updateBtn.textContent = "Update Moves";
                 const pkmImage = document.createElement("img");
-                pkmImage.style.width = '300px';
-                pkmImage.style.height = '300px';
+                pkmImage.style.width = '250px';
+                pkmImage.style.height = '250px';
                 pkmImage.src = member.image;
                 const modalText = document.createElement("p");
 
-                modal.style.textAlign = "center";
                 modalText.textContent = `What would you like to do with ${member.name}?`
                 modalContent.appendChild(close);
                 modalContent.appendChild(modalText);
                 modalContent.appendChild(pkmImage);
+                modalContent.appendChild(newMoveBtn);
                 modalContent.appendChild(pokemonInfo);
                 modalContent.appendChild(deleteBtn);
+                modalContent.appendChild(breakTag);
                 modalContent.appendChild(updateBtn);
 
                 deleteBtn.addEventListener("click", (e)=>{
                     e.stopPropagation();
                     deletePokemonFromTeam2(member);
                 })
+
+                updateBtn.addEventListener("click", (e)=>{
+                    e.stopPropagation();
+                    updateMoves(member);
+                })
             }
         })
     })
+}
+
+function updateMoves(pkm){
+    console.log("Entered here!");
+    console.log(pkm);
 }
 
 function deletePokemonFromTeam1(pkm){ //should delete the pokemon on the webpage as well as on the backend
@@ -589,16 +629,7 @@ function deletePokemonFromTeam1(pkm){ //should delete the pokemon on the webpage
             currTeam.splice(currTeam[index], 1);
         }
     })
-    /*
-    fetch(`http://localhost:3000/Team1/${pkm.id}`, { 
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(resp=>resp.json())
-    .then((pokemon) => console.log(pokemon))
-    */
+
     window.alert("Pokemon Deleted");
     window.alert("Please add a new member(s) using the build team section until the team is full then click save to team 1 or 2");
     showModal();
