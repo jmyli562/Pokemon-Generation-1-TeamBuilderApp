@@ -108,6 +108,15 @@ body {
     margin: auto;
 }
 
+.modal select{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -75px;
+    left: 50px;
+    margin: auto;
+}
+
 .show-modal {
     opacity: 1;
     visibility: visible;

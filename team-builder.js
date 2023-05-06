@@ -506,6 +506,7 @@ function viewClickedPokemonTeam1(e){
 
                 const modalContent = document.getElementsByClassName("modal-content")[0];
                 const deleteBtn = document.createElement("button");
+                const newMoveBtn = document.createElement("button");
                 const pokemonInfo = document.createElement("p");
 
                 pokemonInfo.setAttribute('style', 'white-space: pre;');
@@ -519,6 +520,7 @@ function viewClickedPokemonTeam1(e){
                 pokemonInfo.textContent+= `Move 4: ${member.move4} \r\n`;
 
                 deleteBtn.textContent = "Delete Pokemon";
+                newMoveBtn.textContent = "Choose new moves";
                 const updateBtn = document.createElement("button");
                 updateBtn.textContent = "Update Moves";
                 const pkmImage = document.createElement("img");
@@ -526,12 +528,12 @@ function viewClickedPokemonTeam1(e){
                 pkmImage.style.height = '300px';
                 pkmImage.src = member.image;
                 const modalText = document.createElement("p");
-
-                modal.style.textAlign = "center";
+                
                 modalText.textContent = `What would you like to do with ${member.name}?`
                 modalContent.appendChild(close);
                 modalContent.appendChild(modalText);
                 modalContent.appendChild(pkmImage);
+                modalContent.appendChild(newMoveBtn);
                 modalContent.appendChild(pokemonInfo);
                 modalContent.appendChild(deleteBtn);
                 modalContent.appendChild(updateBtn);
@@ -539,6 +541,16 @@ function viewClickedPokemonTeam1(e){
                 deleteBtn.addEventListener("click", (e)=>{
                     e.stopPropagation();
                     deletePokemonFromTeam1(member);
+                })
+
+                newMoveBtn.addEventListener("click", (e)=>{
+                    e.stopPropagation();
+                    displayLearnedMoves(member);
+                })
+
+                updateBtn.addEventListener("click", (e)=>{
+                    e.stopPropagation();
+                    updateMovesTeam1(member);
                 })
             }
         })
@@ -599,18 +611,113 @@ function viewClickedPokemonTeam2(e){
                     deletePokemonFromTeam2(member);
                 })
 
+                newMoveBtn.addEventListener("click", (e)=>{
+                    e.stopPropagation();
+                    displayLearnedMoves(member);
+                })
+
                 updateBtn.addEventListener("click", (e)=>{
                     e.stopPropagation();
-                    updateMoves(member);
+                    updateMovesTeam2(member);
                 })
             }
         })
     })
 }
 
-function updateMoves(pkm){
-    console.log("Entered here!");
-    console.log(pkm);
+function displayLearnedMoves(pokemon){
+    const move1 = document.createElement("select");
+    const move2 = document.createElement("select");
+    const move3 = document.createElement("select");
+    const move4 = document.createElement("select");
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+    .then(resp=>resp.json())
+    .then((pkm)=>{
+        pkm.moves.forEach((move)=>{
+            const option1 = document.createElement("option");
+            const option2 = document.createElement("option");
+            const option3 = document.createElement("option");
+            const option4 = document.createElement("option");
+
+            option1.value = move.move.name;
+            option1.textContent = move.move.name;
+            option2.value = move.move.name;
+            option2.textContent = move.move.name;
+            option3.value = move.move.name;
+            option3.textContent = move.move.name;
+            option4.value = move.move.name;
+            option4.textContent = move.move.name;
+
+            move1.appendChild(option1);
+            move2.appendChild(option2);
+            move3.appendChild(option3);
+            move4.appendChild(option4);
+        })
+    })
+
+    const modalContent = document.querySelector(".modal-content").children[4];
+
+    modalContent.appendChild(move1);
+    modalContent.appendChild(move2);
+    modalContent.appendChild(move3);
+    modalContent.appendChild(move4);
+}
+
+function updateMovesTeam2(pkm){
+
+    const newMove1 = document.querySelectorAll("select")[5].value;
+    const newMove2 = document.querySelectorAll("select")[6].value;
+    const newMove3 = document.querySelectorAll("select")[7].value;
+    const newMove4 = document.querySelectorAll("select")[8].value;
+
+    pkm.move1 = newMove1;
+    pkm.move2 = newMove2;
+    pkm.move3 = newMove3;
+    pkm.move4 = newMove4;
+
+    fetch(`http://localhost:3000/Team2/${pkm.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        body: JSON.stringify(pkm),
+    })
+    .then(resp=>resp.json())
+    .then(pokemon=>console.log(pokemon))
+
+    window.alert(`${pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}'s moves have been updated!`);
+    showModal();
+    removeModalContent();
+}
+
+function updateMovesTeam1(pkm){
+
+    const newMove1 = document.querySelectorAll("select")[5].value;
+    const newMove2 = document.querySelectorAll("select")[6].value;
+    const newMove3 = document.querySelectorAll("select")[7].value;
+    const newMove4 = document.querySelectorAll("select")[8].value;
+
+    pkm.move1 = newMove1;
+    pkm.move2 = newMove2;
+    pkm.move3 = newMove3;
+    pkm.move4 = newMove4;
+
+    fetch(`http://localhost:3000/Team1/${pkm.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        body: JSON.stringify(pkm),
+    })
+    .then(resp=>resp.json())
+    .then(pokemon=>console.log(pokemon))
+
+    window.alert(`${pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}'s moves have been updated!`);
+    showModal();
+    removeModalContent();
 }
 
 function deletePokemonFromTeam1(pkm){ //should delete the pokemon on the webpage as well as on the backend
