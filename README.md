@@ -39,7 +39,14 @@ The following are links to resources and images used in this project:
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
+Pull requests are welcome. If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+1) Fork the Project
+2) Create your Feature Branch (git checkout -b feature/NewFeature)
+3) Commit your Changes (git commit -m 'Add some NewFeature')
+4) Push to the Branch (git push origin feature/NewFeature)
+5) Open a Pull Request
+
+For major changes, please open an issue first
 to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
