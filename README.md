@@ -27,6 +27,15 @@ $ explorer.exe index.html
 # Or visit the site directly via the link
 pokemon-gen1-team-builder-app.netlify.app
 ```
+## Demo Video
+
+## Links to Resources used in Project
+The following are links to resources and images used in this project:
+
+* Pokemon Font taken from: https://www.cdnfonts.com/pokemon-solid.font
+* Poke-ball image: https://wallpaperaccess.com/full/45635.jpg
+* API Used: https://pokeapi.co/
+* How to build a modal box: https://www.w3schools.com/howto/howto_css_modals.asp
 
 ## Contributing
 
