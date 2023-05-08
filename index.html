@@ -1,90 +1,94 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
-        <title>Gen 1 Pokemon Team Builder</title>
-        
-        <link rel="stylesheet" href="style.css">
-        <body>
-            <style>
-                @import url('https://fonts.cdnfonts.com/css/pokemon-solid');
-                </style>
-            <div class = "pokemon-header">
-                <h1 style="color:white">Welcome to my Generation 1 Pokemon Team Builder App!</h1>
-            </div>
-            <br>
-            <div class = "team-builder">
-                <h1 class = "header-1">Build your team here!</h1>
-                <label for="pokemon">Choose a Pokemon to add to your team:</label>
+  <head>
+    <link
+      href="https://fonts.cdnfonts.com/css/pokemon-solid"
+      rel="stylesheet"
+    />
+    <title>Gen 1 Pokemon Team Builder</title>
 
-                <select name="pokemon-list" id="pokemon-list">
-                <option value="default">None selected</option>
-                </select>
-                <div id = "pokemon-image">
-                    <img id = "image"/>
-                    <p id = "name"></p>
-                    <p id = "type1"></p>
-                    <p id = "type2"></p>
-                    <p id = "ability"></p>
-                </div>
-                <div id = "pokemon-move-list">
-                    <div>
-                        <p id = "p-move1">Select Move 1</p>
-                        <select name="move1" id="move1"></select>
-                    </div>
-                    <div>
-                        <p id = "p-move2">Select Move 2</p>
-                        <select name="move2" id="move2"></select>
-                    </div>
-                    <div>
-                        <p id = "p-move3">Select Move 3</p>
-                        <select name="move3" id="move3"></select>
-                    </div>
-                    <div>
-                        <p id = "p-move4">Select Move 4</p>
-                        <select name="move4" id="move4"></select>
-                    </div>
-                </div>
-                <br>
-                <button id ="add-pokemon">Add Pokemon to team</button>
-            </div>
-            <h1 class = "header-2">Preview your team!</h1>
-            <div class="flex-display">
-                <div class ="Team-1-Display">
-                    <button id ="add-team1">Save to Team 1</button>
-    
-                    <button id ="show-team1">Show Team 1</button>
+    <link rel="stylesheet" href="style.css" />
+    <body>
+      <style>
+        @import url("https://fonts.cdnfonts.com/css/pokemon-solid");
+      </style>
+      <div class="pokemon-header">
+        <h1 style="color: white">
+          Welcome to my Generation 1 Pokemon Team Builder App!
+        </h1>
+      </div>
+      <br />
+      <div class="team-builder">
+        <h1 class="header-1">Build your team here!</h1>
+        <label for="pokemon">Choose a Pokemon to add to your team:</label>
 
-                    <button id ="edit-team1">Edit Team 1</button>
-                
-                    <button id ="clear-team1">Clear Team 1</button>
+        <select name="pokemon-list" id="pokemon-list">
+          <option value="default">None selected</option>
+        </select>
+        <div id="pokemon-image">
+          <img id="image" />
+          <p id="name"></p>
+          <p id="type1"></p>
+          <p id="type2"></p>
+          <p id="ability"></p>
+        </div>
+        <div id="pokemon-move-list">
+          <div>
+            <p id="p-move1">Select Move 1</p>
+            <select name="move1" id="move1"></select>
+          </div>
+          <div>
+            <p id="p-move2">Select Move 2</p>
+            <select name="move2" id="move2"></select>
+          </div>
+          <div>
+            <p id="p-move3">Select Move 3</p>
+            <select name="move3" id="move3"></select>
+          </div>
+          <div>
+            <p id="p-move4">Select Move 4</p>
+            <select name="move4" id="move4"></select>
+          </div>
+        </div>
+        <br />
+        <button id="add-pokemon">Add Pokemon to team</button>
+      </div>
+      <h1 class="header-2">Preview your team!</h1>
+      <div class="flex-display">
+        <div class="Team-1-Display">
+          <button id="add-team1">Save to Team 1</button>
 
-                </div>
-                <br>
-                <div class ="Team-2-Display">
-                    <button id ="add-team2">Save to Team 2</button>
-                
-                    <button id ="show-team2">Show Team 2</button>
-                    
-                    <button id ="edit-team2">Edit Team 2</button>
-                    
-                    <button id ="clear-team2">Clear Team 2</button>
-                </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div id = "team1"></div>
-                <div id = "team2"></div>
-                <div id = "pkmModal" class="modal">
-                    <div class = "modal-content">
-                        <span class="close">&times;</span>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript" src = "team-builder.js" defer></script>
-        </body>
-    </head>
+          <button id="show-team1">Show Team 1</button>
+
+          <button id="edit-team1">Edit Team 1</button>
+
+          <button id="clear-team1">Clear Team 1</button>
+        </div>
+        <br />
+        <div class="Team-2-Display">
+          <button id="add-team2">Save to Team 2</button>
+
+          <button id="show-team2">Show Team 2</button>
+
+          <button id="edit-team2">Edit Team 2</button>
+
+          <button id="clear-team2">Clear Team 2</button>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id="team1"></div>
+        <div id="team2"></div>
+        <div id="pkmModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="team-builder.js" defer></script>
+    </body>
+  </head>
 </html>

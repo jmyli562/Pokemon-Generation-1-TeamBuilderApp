@@ -1,27 +1,27 @@
 {
   "Team1": [
     {
-      "name": "venusaur",
-      "type1": "grass",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-      "type2": "poison",
-      "ability": "overgrow",
-      "move1": "swords-dance",
-      "move2": "swords-dance",
-      "move3": "swords-dance",
-      "move4": "swords-dance",
+      "name": "butterfree",
+      "type1": "bug",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+      "type2": "flying",
+      "ability": "compound-eyes",
+      "move1": "razor-wind",
+      "move2": "razor-wind",
+      "move3": "razor-wind",
+      "move4": "razor-wind",
       "id": 1
     },
     {
-      "name": "wartortle",
+      "name": "starmie",
       "type1": "water",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
-      "type2": null,
-      "ability": "torrent",
-      "move1": "mega-punch",
-      "move2": "mega-punch",
-      "move3": "mega-punch",
-      "move4": "mega-punch",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png",
+      "type2": "psychic",
+      "ability": "illuminate",
+      "move1": "headbutt",
+      "move2": "headbutt",
+      "move3": "headbutt",
+      "move4": "headbutt",
       "id": 2
     },
     {
@@ -37,44 +37,6 @@
       "id": 3
     },
     {
-      "name": "krabby",
-      "type1": "water",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png",
-      "type2": null,
-      "ability": "hyper-cutter",
-      "move1": "vice-grip",
-      "move2": "vice-grip",
-      "move3": "vice-grip",
-      "move4": "vice-grip",
-      "id": 4
-    },
-    {
-      "name": "doduo",
-      "type1": "normal",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/84.png",
-      "type2": "flying",
-      "ability": "run-away",
-      "move1": "swords-dance",
-      "move2": "swords-dance",
-      "move3": "swords-dance",
-      "move4": "swords-dance",
-      "id": 5
-    },
-    {
-      "name": "eevee",
-      "type1": "normal",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
-      "type2": null,
-      "ability": "run-away",
-      "move1": "pay-day",
-      "move2": "pay-day",
-      "move3": "pay-day",
-      "move4": "pay-day",
-      "id": 6
-    }
-  ],
-  "Team2": [
-    {
       "name": "charmeleon",
       "type1": "fire",
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
@@ -84,30 +46,68 @@
       "move2": "mega-punch",
       "move3": "mega-punch",
       "move4": "mega-punch",
+      "id": 4
+    },
+    {
+      "name": "goldeen",
+      "type1": "water",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png",
+      "type2": null,
+      "ability": "swift-swim",
+      "move1": "swords-dance",
+      "move2": "swords-dance",
+      "move3": "swords-dance",
+      "move4": "swords-dance",
+      "id": 5
+    },
+    {
+      "name": "metapod",
+      "type1": "bug",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+      "type2": null,
+      "ability": "shed-skin",
+      "move1": "string-shot",
+      "move2": "string-shot",
+      "move3": "string-shot",
+      "move4": "string-shot",
+      "id": 6
+    }
+  ],
+  "Team2": [
+    {
+      "name": "victreebel",
+      "type1": "grass",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png",
+      "type2": "poison",
+      "ability": "chlorophyll",
+      "move1": "swords-dance",
+      "move2": "swords-dance",
+      "move3": "swords-dance",
+      "move4": "swords-dance",
       "id": 1
     },
     {
-      "name": "weedle",
-      "type1": "bug",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
-      "type2": "poison",
-      "ability": "shield-dust",
-      "move1": "poison-sting",
-      "move2": "poison-sting",
-      "move3": "poison-sting",
-      "move4": "poison-sting",
+      "name": "aerodactyl",
+      "type1": "rock",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png",
+      "type2": "flying",
+      "ability": "rock-head",
+      "move1": "razor-wind",
+      "move2": "razor-wind",
+      "move3": "razor-wind",
+      "move4": "razor-wind",
       "id": 2
     },
     {
-      "name": "rapidash",
-      "type1": "fire",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
+      "name": "metapod",
+      "type1": "bug",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
       "type2": null,
-      "ability": "run-away",
-      "move1": "low-kick",
-      "move2": "solar-beam",
-      "move3": "double-edge",
-      "move4": "fire-spin",
+      "ability": "shed-skin",
+      "move1": "string-shot",
+      "move2": "string-shot",
+      "move3": "string-shot",
+      "move4": "string-shot",
       "id": 3
     },
     {
@@ -135,15 +135,15 @@
       "id": 5
     },
     {
-      "name": "jigglypuff",
-      "type1": "normal",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
-      "type2": "fairy",
-      "ability": "cute-charm",
-      "move1": "pound",
-      "move2": "pound",
-      "move3": "pound",
-      "move4": "pound",
+      "name": "charmeleon",
+      "type1": "fire",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+      "type2": null,
+      "ability": "blaze",
+      "move1": "mega-punch",
+      "move2": "mega-punch",
+      "move3": "mega-punch",
+      "move4": "mega-punch",
       "id": 6
     }
   ]
