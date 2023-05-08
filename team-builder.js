@@ -6,6 +6,7 @@ const currTeam = []; //an array that will hold pokemon objects of the users sele
 let currPokemon = {};
 const membersToUpdate = [];
 let wasEdited = false;
+let addToTeamOne;
 
 const modal = document.getElementById("pkmModal");
 const close = document.querySelector(".close");
@@ -28,7 +29,7 @@ const div = document.getElementById("pokemon-image");
 const img = document.getElementById("image");
 const p = document.getElementById("name");
 const p1 = document.getElementById("type1");
-const pkmImages = document.getElementById("team1");
+const pkmImages1 = document.getElementById("team1");
 const pkmImages2 = document.getElementById("team2");
 const p2 = document.getElementById("type2");
 const p3 = document.getElementById("ability");
@@ -55,7 +56,7 @@ editTeamBtn2.addEventListener("click", () => {
 clearTeamBtn1.addEventListener("click", () => {
   deleteTeamOneFromServer();
 
-  deletePokemonImage();
+  deletePokemonImageTeam1();
 
   window.alert("Team One Cleared!");
 });
@@ -97,7 +98,6 @@ function deletePokemonImageTeam2() {
 }
 
 function displayTeam(team) {
-  console.log(team);
   if (team === 1) {
     const grabDiv = document.getElementById("team1");
     fetch("http://localhost:3000/Team1")
@@ -107,6 +107,8 @@ function displayTeam(team) {
           //currTeam.push(member);
           const img = document.createElement("img");
           img.src = member.image;
+          img.style.width = "200px";
+          img.style.height = "200px";
           img.addEventListener("click", viewClickedPokemonTeam1);
           grabDiv.appendChild(img);
         })
@@ -120,6 +122,8 @@ function displayTeam(team) {
           //currTeam.push(member);
           const img = document.createElement("img");
           img.src = member.image;
+          img.style.width = "200px";
+          img.style.height = "200px";
           img.addEventListener("click", viewClickedPokemonTeam2);
           grabDiv.appendChild(img);
         })
@@ -261,7 +265,7 @@ function saveCurrTeamToOne() {
     window.alert("Team 1 was updated with the new pokemon.");
     membersToUpdate.length = 0;
     currTeam.length = 0;
-    deletePokemonImage();
+    deletePokemonImageTeam1();
     wasEdited = false;
   } else if (currTeam.length < 6) {
     window.alert(
@@ -292,7 +296,7 @@ function saveCurrTeamToOne() {
 
           currTeam.length = 0; //clearing the currentTeam
 
-          deletePokemonImage();
+          deletePokemonImageTeam2();
         } else {
           window.alert("Team is full. Please clear team 1 to save your team");
         }
@@ -309,7 +313,7 @@ function saveCurrTeamToOne() {
 
         currTeam.length = 0; //clearing the currentTeam
 
-        deletePokemonImage();
+        deletePokemonImageTeam2();
       }
     });
   }
@@ -352,7 +356,7 @@ function saveCurrTeamToTwo() {
 
           currTeam.length = 0; //clearing the currentTeam
 
-          deletePokemonImage();
+          deletePokemonImageTeam2();
         } else {
           window.alert("Team is full. Please clear team 2 to save your team");
         }
@@ -369,15 +373,15 @@ function saveCurrTeamToTwo() {
 
         currTeam.length = 0; //clearing the currentTeam
 
-        deletePokemonImage();
+        deletePokemonImageTeam2();
       }
     });
   }
 }
 
-function deletePokemonImage() {
-  while (pkmImages.firstChild) {
-    pkmImages.removeChild(pkmImages.firstChild);
+function deletePokemonImageTeam1() {
+  while (pkmImages1.firstChild) {
+    pkmImages1.removeChild(pkmImages1.firstChild);
   }
 }
 
@@ -711,7 +715,7 @@ function updateMovesTeam1(pkm) {
   showModal();
   removeModalContent();
 }
-let addToTeamOne;
+
 function deletePokemonFromTeam1(pkm) {
   //should delete the pokemon on the webpage as well as on the backend
   //console.log(e.target.parentNode);

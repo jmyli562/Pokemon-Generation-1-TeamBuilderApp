@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image: url("https://wallpaperaccess.com/full/45635.jpg");
+  background-color: rgb(62, 62, 199);
 }
 
 #add-pokemon {
@@ -70,7 +70,11 @@ body {
 .header-2 {
   font-family: "Pokemon Solid", sans-serif;
   font-size: 40px;
-  color: rgb(50, 146, 190);
+  color: #4d6ad8;
+  text-align: left;
+  margin: 0 0 0.5em;
+  top: -0.75em;
+  left: 1em;
 }
 
 .Team-1-Display {
@@ -152,4 +156,48 @@ body {
   visibility: visible;
   transform: scale(1);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+#background-img {
+  position: relative;
+}
+
+#image {
+  position: absolute;
+  z-index: 1;
+}
+
+.team-display {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 26em;
+  box-sizing: content-box;
+}
+
+section {
+  background: #c7c7c7;
+  border-radius: 1em;
+  border: 0.0625em solid #d6bbbb;
+  padding: 1.25em 1em 1em;
+}
+
+#team1 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-content: center;
+  gap: 1em 0;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+#team2 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-content: center;
+  gap: 1em 0;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }

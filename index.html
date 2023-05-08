@@ -26,7 +26,14 @@
           <option value="default">None selected</option>
         </select>
         <div id="pokemon-image">
+          <br>
           <img id="image" />
+          <img
+            id="background-img"
+            src="https://user-images.githubusercontent.com/60550632/236927150-b571775e-99ae-4a06-9341-fef1f68bd6a3.png"
+          />
+          <br />
+          <br />
           <p id="name"></p>
           <p id="type1"></p>
           <p id="type2"></p>
@@ -53,7 +60,10 @@
         <br />
         <button id="add-pokemon">Add Pokemon to team</button>
       </div>
-      <h1 class="header-2">Preview your team!</h1>
+      <section class="team-display">
+        <h2 class="header-2">View your team!</h2>
+        <div id="team1"></div>
+        <div id="team2"></div>
       <div class="flex-display">
         <div class="Team-1-Display">
           <button id="add-team1">Save to Team 1</button>
@@ -74,14 +84,7 @@
 
           <button id="clear-team2">Clear Team 2</button>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div id="team1"></div>
-        <div id="team2"></div>
+      </section>
         <div id="pkmModal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
