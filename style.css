@@ -10,7 +10,7 @@
 .team-builder {
   float: left;
   padding-left: 100px;
-  width: 50%;
+  width: 30%;
 }
 
 body {
@@ -237,7 +237,64 @@ section {
   display: flex;
   flex-direction: column;
   gap: 0.375em;
-  font-size: 0.875em;
+  font-size: 15px;
   font-weight: 700;
   width: 100%;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#analysis-header {
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 40px;
+  color: #1b1c29;
+  text-align: center;
+  margin: 0 0 0.5em;
+  top: -0.75em;
+  left: 1em;
+}
+
+#Team-Analysis {
+  background-color: #c5917d;
+  position: relative;
+  right: 500px;
+}
+
+.team-builder-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 13px;
+}
+
+table td {
+  border: 20px solid #ffffff;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+table,
+th,
+td {
+  border: 3px solid;
+}
+
+#team-analysis-table {
+  left: 1600px;
+  bottom: 150px;
+  position: fixed;
+}
+
+.team-analysis-header {
+  float: right;
+  position: fixed;
+  right: 300px;
+  top: 150px;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 25px;
+  color: rgb(31, 53, 87);
 }

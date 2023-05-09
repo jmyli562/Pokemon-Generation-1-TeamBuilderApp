@@ -104,7 +104,6 @@ function displayTeam(team) {
       .then((resp) => resp.json())
       .then((data) =>
         data.forEach((member) => {
-          //currTeam.push(member);
           const containerDiv = document.createElement("div");
           const infoDiv = document.createElement("div");
           infoDiv.setAttribute("class", "info-container");
