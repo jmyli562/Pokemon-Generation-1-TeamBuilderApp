@@ -97,29 +97,54 @@ function deletePokemonImageTeam2() {
   }
 }
 
-function displayTeam(team) {
+function createTeamCard(member, team) {
   if (team === 1) {
     const grabDiv = document.getElementById("team1");
+    const containerDiv = document.createElement("div");
+    const infoDiv = document.createElement("div");
+    infoDiv.setAttribute("class", "info-container");
+    containerDiv.setAttribute("class", "slot-container");
+    const img = document.createElement("img");
+    const span = document.createElement("span");
+    span.setAttribute("class", "slot-name");
+    span.textContent = member.name;
+    img.src = member.image;
+    img.style.width = "200px";
+    img.style.height = "200px";
+    img.addEventListener("click", viewClickedPokemonTeam1);
+    grabDiv.appendChild(containerDiv);
+    containerDiv.appendChild(img);
+    containerDiv.appendChild(infoDiv);
+    infoDiv.appendChild(span);
+  } else {
+    const grabDiv = document.getElementById("team2");
+    const containerDiv = document.createElement("div");
+    const infoDiv = document.createElement("div");
+    infoDiv.setAttribute("class", "info-container");
+    containerDiv.setAttribute("class", "slot-container");
+    const img = document.createElement("img");
+    const span = document.createElement("span");
+    span.setAttribute("class", "slot-name");
+    span.textContent = member.name;
+    img.src = member.image;
+    img.style.width = "200px";
+    img.style.height = "200px";
+    img.addEventListener("click", viewClickedPokemonTeam1);
+    grabDiv.appendChild(containerDiv);
+    containerDiv.appendChild(img);
+    containerDiv.appendChild(infoDiv);
+    infoDiv.appendChild(span);
+  }
+}
+
+function displayTeam(team) {
+  if (team === 1) {
     fetch("http://localhost:3000/Team1")
       .then((resp) => resp.json())
       .then((data) =>
-        data.forEach((member) => {
-          const containerDiv = document.createElement("div");
-          const infoDiv = document.createElement("div");
-          infoDiv.setAttribute("class", "info-container");
-          containerDiv.setAttribute("class", "slot-container");
-          const img = document.createElement("img");
-          const span = document.createElement("span");
-          span.setAttribute("class", "slot-name");
-          span.textContent = member.name;
-          img.src = member.image;
-          img.style.width = "200px";
-          img.style.height = "200px";
-          img.addEventListener("click", viewClickedPokemonTeam1);
-          grabDiv.appendChild(containerDiv);
-          containerDiv.appendChild(img);
-          containerDiv.appendChild(infoDiv);
-          infoDiv.appendChild(span);
+        data.forEach((member, index) => {
+          createTeamCard(member, team);
+          fillTeamTable(member, index + 1);
         })
       );
   } else if (team === 2) {
@@ -127,27 +152,54 @@ function displayTeam(team) {
     fetch("http://localhost:3000/Team2")
       .then((resp) => resp.json())
       .then((data) =>
-        data.forEach((member) => {
-          //currTeam.push(member);
-          const containerDiv = document.createElement("div");
-          const infoDiv = document.createElement("div");
-          infoDiv.setAttribute("class", "info-container");
-          containerDiv.setAttribute("class", "slot-container");
-          const img = document.createElement("img");
-          const span = document.createElement("span");
-          span.setAttribute("class", "slot-name");
-          span.textContent = member.name;
-          img.src = member.image;
-          img.style.width = "200px";
-          img.style.height = "200px";
-          img.addEventListener("click", viewClickedPokemonTeam2);
-          grabDiv.appendChild(containerDiv);
-          containerDiv.appendChild(img);
-          containerDiv.appendChild(infoDiv);
-          infoDiv.appendChild(span);
+        data.forEach((member, index) => {
+          createTeamCard(member, team);
+          fillTeamTable(member, index + 1);
         })
       );
   }
+}
+
+function fillTeamTable(member, index) {
+  const table = document.getElementById("team-analysis-table");
+  let weaknesses = [];
+  let resistances = [];
+
+  const imgSlot = document.getElementsByClassName(`slot-${index}-pokemon`)[0]
+    .children[0].children[0];
+
+  imgSlot.src = member.image;
+
+  const nameSlot = document.getElementsByClassName(`slot-${index}-pokemon`)[0]
+    .children[0].children[1];
+
+  nameSlot.textContent = member.name;
+
+  //resistances = getResistances(member);
+
+  /*
+  for (let i = 0; (row = table.rows[i]); i++) {
+    console.log(row);
+  }
+  */
+}
+
+function getWeaknesses(member) {
+  const arr = [];
+
+  const type1 = member.type1;
+  const type2 = member.type2;
+
+  arr.push(type1);
+  arr.push(type2);
+
+  arr.forEach((type) => {
+    fetch(`https://pokeapi.co/api/v2/type/${type}`)
+      .then((resp) => resp.json())
+      .then((weakness) => {
+        console.log(weakness);
+      });
+  });
 }
 
 function writeTeamOneToServer() {
