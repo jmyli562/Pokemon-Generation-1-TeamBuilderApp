@@ -1,28 +1,64 @@
 {
   "Team1": [
     {
-      "name": "squirtle",
+      "name": "charmeleon",
+      "type1": "fire",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+      "type2": null,
+      "ability": "blaze",
+      "move1": "mega-punch",
+      "move2": "mega-punch",
+      "move3": "mega-punch",
+      "move4": "mega-punch",
+      "id": 1
+    },
+    {
+      "name": "caterpie",
+      "type1": "bug",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
+      "type2": null,
+      "ability": "shield-dust",
+      "move1": "tackle",
+      "move2": "tackle",
+      "move3": "tackle",
+      "move4": "tackle",
+      "id": 2
+    },
+    {
+      "name": "blastoise",
       "type1": "water",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
       "type2": null,
       "ability": "torrent",
       "move1": "mega-punch",
       "move2": "mega-punch",
       "move3": "mega-punch",
       "move4": "mega-punch",
-      "id": 7
+      "id": 3
     },
     {
-      "name": "metapod",
-      "type1": "bug",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+      "name": "wartortle",
+      "type1": "water",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
       "type2": null,
-      "ability": "shed-skin",
-      "move1": "string-shot",
-      "move2": "string-shot",
-      "move3": "string-shot",
-      "move4": "string-shot",
-      "id": 8
+      "ability": "torrent",
+      "move1": "mega-punch",
+      "move2": "mega-punch",
+      "move3": "mega-punch",
+      "move4": "mega-punch",
+      "id": 4
+    },
+    {
+      "name": "caterpie",
+      "type1": "bug",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
+      "type2": null,
+      "ability": "shield-dust",
+      "move1": "tackle",
+      "move2": "tackle",
+      "move3": "tackle",
+      "move4": "tackle",
+      "id": 5
     },
     {
       "name": "pidgeotto",
@@ -34,43 +70,7 @@
       "move2": "razor-wind",
       "move3": "razor-wind",
       "move4": "razor-wind",
-      "id": 9
-    },
-    {
-      "name": "tentacool",
-      "type1": "water",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
-      "type2": "poison",
-      "ability": "clear-body",
-      "move1": "swords-dance",
-      "move2": "swords-dance",
-      "move3": "swords-dance",
-      "move4": "swords-dance",
-      "id": 10
-    },
-    {
-      "name": "tentacool",
-      "type1": "water",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
-      "type2": "poison",
-      "ability": "clear-body",
-      "move1": "",
-      "move2": "",
-      "move3": "",
-      "move4": "",
-      "id": 11
-    },
-    {
-      "name": "dratini",
-      "type1": "dragon",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
-      "type2": null,
-      "ability": "shed-skin",
-      "move1": "bind",
-      "move2": "bind",
-      "move3": "bind",
-      "move4": "bind",
-      "id": 12
+      "id": 6
     }
   ],
   "Team2": [

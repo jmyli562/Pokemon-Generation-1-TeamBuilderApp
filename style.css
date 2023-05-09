@@ -1,6 +1,6 @@
 .pokemon-header {
   font-family: "Pokemon Solid", sans-serif;
-  background-color: rgb(15, 83, 185);
+  background-color: rgb(31, 53, 87);
   text-align: center;
   margin: auto;
   width: 50%;
@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: rgb(62, 62, 199);
+  background-color: rgb(184, 184, 194);
 }
 
 #add-pokemon {
@@ -70,8 +70,8 @@ body {
 .header-2 {
   font-family: "Pokemon Solid", sans-serif;
   font-size: 40px;
-  color: #4d6ad8;
-  text-align: left;
+  color: #b9bcdf;
+  text-align: center;
   margin: 0 0 0.5em;
   top: -0.75em;
   left: 1em;
@@ -81,12 +81,16 @@ body {
   display: flex;
   gap: 10px;
   flex-direction: row;
+  position: relative;
+  left: 140px;
 }
 
 .Team-2-Display {
   display: flex;
   gap: 10px;
   flex-direction: row;
+  position: relative;
+  left: 140px;
 }
 
 .modal {
@@ -170,15 +174,42 @@ body {
 .team-display {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: 26em;
+  width: 45em;
   box-sizing: content-box;
 }
 
 section {
-  background: #c7c7c7;
+  background: #662f19;
   border-radius: 1em;
   border: 0.0625em solid #d6bbbb;
   padding: 1.25em 1em 1em;
+}
+
+.slot-name {
+  font-size: 0.875em;
+  font-weight: 700;
+  width: 100%;
+  line-height: 1;
+}
+
+.slot-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375em;
+}
+
+.info-container {
+  width: 11em;
+  height: 5em;
+  border-radius: 0.625em;
+  display: grid;
+  align-content: center;
+  align-items: center;
+  grid-template-rows: 2em 1em;
+  gap: 0.5em;
+  justify-content: center;
+  text-align: center;
+  background: #916868;
 }
 
 #team1 {
@@ -200,4 +231,13 @@ section {
   gap: 1em 0;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.info-container span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375em;
+  font-size: 0.875em;
+  font-weight: 700;
+  width: 100%;
 }

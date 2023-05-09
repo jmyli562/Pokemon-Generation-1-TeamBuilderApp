@@ -105,12 +105,22 @@ function displayTeam(team) {
       .then((data) =>
         data.forEach((member) => {
           //currTeam.push(member);
+          const containerDiv = document.createElement("div");
+          const infoDiv = document.createElement("div");
+          infoDiv.setAttribute("class", "info-container");
+          containerDiv.setAttribute("class", "slot-container");
           const img = document.createElement("img");
+          const span = document.createElement("span");
+          span.setAttribute("class", "slot-name");
+          span.textContent = member.name;
           img.src = member.image;
           img.style.width = "200px";
           img.style.height = "200px";
           img.addEventListener("click", viewClickedPokemonTeam1);
-          grabDiv.appendChild(img);
+          grabDiv.appendChild(containerDiv);
+          containerDiv.appendChild(img);
+          containerDiv.appendChild(infoDiv);
+          infoDiv.appendChild(span);
         })
       );
   } else if (team === 2) {
@@ -120,12 +130,22 @@ function displayTeam(team) {
       .then((data) =>
         data.forEach((member) => {
           //currTeam.push(member);
+          const containerDiv = document.createElement("div");
+          const infoDiv = document.createElement("div");
+          infoDiv.setAttribute("class", "info-container");
+          containerDiv.setAttribute("class", "slot-container");
           const img = document.createElement("img");
+          const span = document.createElement("span");
+          span.setAttribute("class", "slot-name");
+          span.textContent = member.name;
           img.src = member.image;
           img.style.width = "200px";
           img.style.height = "200px";
           img.addEventListener("click", viewClickedPokemonTeam2);
-          grabDiv.appendChild(img);
+          grabDiv.appendChild(containerDiv);
+          containerDiv.appendChild(img);
+          containerDiv.appendChild(infoDiv);
+          infoDiv.appendChild(span);
         })
       );
   }
@@ -490,6 +510,8 @@ function previewTeam(arr) {
       i = arr.length - 1;
       const grabDiv = document.getElementById("team1");
       const img = document.createElement("img");
+      img.style.width = "100px";
+      img.style.height = "100px";
       img.src = arr[i].image;
       grabDiv.appendChild(img);
       addToTeamOne = false;
@@ -499,6 +521,8 @@ function previewTeam(arr) {
       i = arr.length - 1;
       const grabDiv = document.getElementById("team2");
       const img = document.createElement("img");
+      img.style.width = "100px";
+      img.style.height = "100px";
       img.src = arr[i].image;
       grabDiv.appendChild(img);
     }
