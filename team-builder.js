@@ -155,7 +155,7 @@ function displayTeam(team) {
   }
 }
 
-function fillTeamTable(member, index) {
+async function fillTeamTable(member, index) {
   const table = document.getElementById("team-analysis-table");
   table.hidden = false;
 
@@ -172,7 +172,7 @@ function fillTeamTable(member, index) {
 
   nameSlot.textContent = member.name;
 
-  getResistances(member).then((arr) => {
+  await getResistances(member).then((arr) => {
     console.log(arr);
   });
 
