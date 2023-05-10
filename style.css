@@ -82,7 +82,7 @@ body {
   gap: 10px;
   flex-direction: row;
   position: relative;
-  left: 140px;
+  left: 200px;
 }
 
 .Team-2-Display {
@@ -90,7 +90,7 @@ body {
   gap: 10px;
   flex-direction: row;
   position: relative;
-  left: 140px;
+  left: 200px;
 }
 
 .modal {
@@ -284,17 +284,7 @@ td {
 }
 
 #team-analysis-table {
+  position: fixed;
   left: 1600px;
   bottom: 150px;
-  position: fixed;
-}
-
-.team-analysis-header {
-  float: right;
-  position: fixed;
-  right: 300px;
-  top: 150px;
-  font-family: "Pokemon Solid", sans-serif;
-  font-size: 25px;
-  color: rgb(31, 53, 87);
 }

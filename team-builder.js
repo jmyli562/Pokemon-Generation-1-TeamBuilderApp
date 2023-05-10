@@ -15,8 +15,6 @@ const editTeamBtn1 = document.getElementById("edit-team1");
 const editTeamBtn2 = document.getElementById("edit-team2");
 const saveTeamBtn1 = document.getElementById("add-team1");
 const saveTeamBtn2 = document.getElementById("add-team2");
-const showTeamBtn1 = document.getElementById("show-team1");
-const showTeamBtn2 = document.getElementById("show-team2");
 const clearTeamBtn1 = document.getElementById("clear-team1");
 const clearTeamBtn2 = document.getElementById("clear-team2");
 
@@ -67,9 +65,6 @@ clearTeamBtn2.addEventListener("click", () => {
 
   window.alert("Team Two Cleared!");
 });
-
-showTeamBtn1.addEventListener("click", displayTeamOne);
-showTeamBtn2.addEventListener("click", displayTeamTwo);
 
 //zoomPageOut(); //will set the zoom of the page automaticallyo to 75% to make the page look nice
 fetchPokemonNames();
@@ -129,7 +124,7 @@ function createTeamCard(member, team) {
     img.src = member.image;
     img.style.width = "200px";
     img.style.height = "200px";
-    img.addEventListener("click", viewClickedPokemonTeam1);
+    img.addEventListener("click", viewClickedPokemonTeam2);
     grabDiv.appendChild(containerDiv);
     containerDiv.appendChild(img);
     containerDiv.appendChild(infoDiv);
@@ -162,6 +157,8 @@ function displayTeam(team) {
 
 function fillTeamTable(member, index) {
   const table = document.getElementById("team-analysis-table");
+  table.hidden = false;
+
   let weaknesses = [];
   let resistances = [];
 
@@ -175,8 +172,12 @@ function fillTeamTable(member, index) {
 
   nameSlot.textContent = member.name;
 
-  //resistances = getResistances(member);
+  getResistances(member).then((arr) => {
+    console.log(arr);
+  });
 
+  //console.log(resistances);
+  //console.log(resistances);
   /*
   for (let i = 0; (row = table.rows[i]); i++) {
     console.log(row);
@@ -184,9 +185,9 @@ function fillTeamTable(member, index) {
   */
 }
 
-function getWeaknesses(member) {
+async function getResistances(member) {
   const arr = [];
-
+  const resist = [];
   const type1 = member.type1;
   const type2 = member.type2;
 
@@ -194,12 +195,21 @@ function getWeaknesses(member) {
   arr.push(type2);
 
   arr.forEach((type) => {
-    fetch(`https://pokeapi.co/api/v2/type/${type}`)
-      .then((resp) => resp.json())
-      .then((weakness) => {
-        console.log(weakness);
-      });
+    if (type !== null) {
+      return fetch(`https://pokeapi.co/api/v2/type/${type}`)
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((resistances) => {
+          for (let types of resistances.damage_relations.half_damage_from) {
+            resist.push(types.name);
+          }
+          //resist.length = 0;
+        })
+        .catch((err) => console.log("failed", err));
+    }
   });
+  return resist;
 }
 
 function writeTeamOneToServer() {
