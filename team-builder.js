@@ -174,7 +174,8 @@ async function fillTeamTable(member, index) {
 
   nameSlot.textContent = member.name;
 
-  await getResistances(member).then((arr) => {});
+  getResistances(member);
+  getWeaknesses(member);
 
   //console.log(resistances);
   //console.log(resistances);
@@ -185,7 +186,7 @@ async function fillTeamTable(member, index) {
   */
 }
 
-async function getResistances(pokemon) {
+function getResistances(pokemon) {
   const arrOfTypes = [];
   const resist = [];
   const type1 = pokemon.type1;
@@ -194,7 +195,7 @@ async function getResistances(pokemon) {
   arrOfTypes.push(type1);
   arrOfTypes.push(type2);
 
-  arrOfTypes.forEach((type, index) => {
+  arrOfTypes.forEach((type) => {
     if (type !== null) {
       return fetch(`https://pokeapi.co/api/v2/type/${type}`)
         .then((resp) => {
@@ -203,7 +204,7 @@ async function getResistances(pokemon) {
         .then((resistances) => {
           for (let types of resistances.damage_relations.half_damage_from) {
             resist.push(types.name);
-            updateTable(resist, pokemon.id);
+            updateTableWithResistances(resist, pokemon.id);
             resist.length = 0;
           }
           //resist.length = 0;
@@ -213,7 +214,35 @@ async function getResistances(pokemon) {
   });
 }
 
-function updateTable(resistArr, id) {
+function getWeaknesses(pokemon) {
+  const arrOfTypes = [];
+  const weakness = [];
+  const type1 = pokemon.type1;
+  const type2 = pokemon.type2;
+
+  arrOfTypes.push(type1);
+  arrOfTypes.push(type2);
+
+  arrOfTypes.forEach((type) => {
+    if (type !== null) {
+      return fetch(`https://pokeapi.co/api/v2/type/${type}`)
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((resistances) => {
+          for (let types of resistances.damage_relations.double_damage_from) {
+            weakness.push(types.name);
+            updateTableWithWeaknesses(weakness, pokemon.id);
+            weakness.length = 0;
+          }
+          //resist.length = 0;
+        })
+        .catch((err) => console.log("failed", err));
+    }
+  });
+}
+
+function updateTableWithResistances(resistArr, id) {
   const table = document.getElementById("team-analysis-table");
   //console.table(resistArr);
   for (let h = 0; h < resistArr.length; h++) {
@@ -221,6 +250,20 @@ function updateTable(resistArr, id) {
       for (var j = 0, col; (col = row.cells[j]); j++) {
         if (row.getAttribute("data-tb-type") === resistArr[h]) {
           row.children[id].textContent = "Resist";
+        }
+      }
+    }
+  }
+}
+
+function updateTableWithWeaknesses(weaknessArr, id) {
+  const table = document.getElementById("team-analysis-table");
+  //console.table(resistArr);
+  for (let h = 0; h < weaknessArr.length; h++) {
+    for (let i = 0; (row = table.rows[i]); i++) {
+      for (var j = 0, col; (col = row.cells[j]); j++) {
+        if (row.getAttribute("data-tb-type") === weaknessArr[h]) {
+          row.children[id].textContent = "Weak";
         }
       }
     }
