@@ -134,7 +134,8 @@ function createTeamCard(member, team) {
 
 function displayTeam(team) {
   if (team === 1) {
-    fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1")
+    fetch("http://localhost:3000/Team1")
+      // fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1")
       .then((resp) => resp.json())
       .then((data) =>
         data.forEach((member, index) => {
@@ -144,7 +145,8 @@ function displayTeam(team) {
       );
   } else if (team === 2) {
     const grabDiv = document.getElementById("team2");
-    fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2")
+    fetch("http://localhost:3000/Team2")
+      // fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2")
       .then((resp) => resp.json())
       .then((data) =>
         data.forEach((member, index) => {
@@ -172,9 +174,7 @@ async function fillTeamTable(member, index) {
 
   nameSlot.textContent = member.name;
 
-  await getResistances(member).then((arr) => {
-    console.log(arr);
-  });
+  await getResistances(member).then((arr) => {});
 
   //console.log(resistances);
   //console.log(resistances);
@@ -185,16 +185,16 @@ async function fillTeamTable(member, index) {
   */
 }
 
-async function getResistances(member) {
-  const arr = [];
+async function getResistances(pokemon) {
+  const arrOfTypes = [];
   const resist = [];
-  const type1 = member.type1;
-  const type2 = member.type2;
+  const type1 = pokemon.type1;
+  const type2 = pokemon.type2;
 
-  arr.push(type1);
-  arr.push(type2);
+  arrOfTypes.push(type1);
+  arrOfTypes.push(type2);
 
-  arr.forEach((type) => {
+  arrOfTypes.forEach((type, index) => {
     if (type !== null) {
       return fetch(`https://pokeapi.co/api/v2/type/${type}`)
         .then((resp) => {
@@ -203,13 +203,28 @@ async function getResistances(member) {
         .then((resistances) => {
           for (let types of resistances.damage_relations.half_damage_from) {
             resist.push(types.name);
+            updateTable(resist, pokemon.id);
+            resist.length = 0;
           }
           //resist.length = 0;
         })
         .catch((err) => console.log("failed", err));
     }
   });
-  return resist;
+}
+
+function updateTable(resistArr, id) {
+  const table = document.getElementById("team-analysis-table");
+  //console.table(resistArr);
+  for (let h = 0; h < resistArr.length; h++) {
+    for (let i = 0; (row = table.rows[i]); i++) {
+      for (var j = 0, col; (col = row.cells[j]); j++) {
+        if (row.getAttribute("data-tb-type") === resistArr[h]) {
+          row.children[id].textContent = "Resist";
+        }
+      }
+    }
+  }
 }
 
 function writeTeamOneToServer() {
