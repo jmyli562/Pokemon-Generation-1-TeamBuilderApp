@@ -44,17 +44,39 @@ close.addEventListener("click", () => {
   removeModalContent();
 });
 editTeamBtn1.addEventListener("click", (e) => {
-  displayTeamOne();
-  window.alert("Please click on a Pokemon to edit its moves or replace it.");
+  if (editTeamBtn2.disabled === true) {
+    deletePokemonImageTeam2();
+    displayTeamOne();
+    window.alert("Please click on a Pokemon to edit its moves or replace it.");
+    editTeamBtn1.disabled = true;
+    editTeamBtn2.disabled = false;
+  } else {
+    displayTeamOne();
+    window.alert("Please click on a Pokemon to edit its moves or replace it.");
+    editTeamBtn1.disabled = true;
+  }
 });
 editTeamBtn2.addEventListener("click", () => {
-  displayTeamTwo();
-  window.alert("Please click on a Pokemon to edit its moves or replace it.");
+  if (editTeamBtn1.disabled === true) {
+    deletePokemonImageTeam1();
+    displayTeamTwo();
+    window.alert("Please click on a Pokemon to edit its moves or replace it.");
+    editTeamBtn2.disabled = true;
+    editTeamBtn1.disabled = false;
+  } else {
+    displayTeamTwo();
+    window.alert("Please click on a Pokemon to edit its moves or replace it.");
+    editTeamBtn2.disabled = true;
+  }
 });
 clearTeamBtn1.addEventListener("click", () => {
   deleteTeamOneFromServer();
 
   deletePokemonImageTeam1();
+
+  const table = document.getElementById("team-analysis-table");
+
+  table.hidden = true;
 
   window.alert("Team One Cleared!");
 });
@@ -62,6 +84,10 @@ clearTeamBtn2.addEventListener("click", () => {
   deleteTeamTwoFromServer();
 
   deletePokemonImageTeam2();
+
+  const table = document.getElementById("team-analysis-table");
+
+  table.hidden = true;
 
   window.alert("Team Two Cleared!");
 });
