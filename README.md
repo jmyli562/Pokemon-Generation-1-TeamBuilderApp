@@ -23,9 +23,6 @@ $ json-server --watch json.db
 
 # Open the webpage
 $ explorer.exe index.html
-
-# Or visit the site directly via the link
-pokemon-gen1-team-builder-app.netlify.app
 ```
 ## Demo Video
 
