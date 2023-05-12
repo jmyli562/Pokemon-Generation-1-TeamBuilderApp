@@ -7,6 +7,10 @@ This app allows the user to build a team of 6 Pokemon from the original 151 Poke
 
 ### How to Use
 
+There is currently no need to install Git and JSON server as I have deployed my website. Just click on the following link: https://pokemon-gen1-team-builder-app.netlify.app/
+
+If the website is down though please do continue to follow the instructions below.
+
 In order to use this application, you'll need Git (https://git-scm.com/) and JSON server (https://www.npmjs.com/package/json-server) installed on your computer. 
 Once you have installed these applications
 
