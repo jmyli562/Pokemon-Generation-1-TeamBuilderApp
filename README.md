@@ -1,5 +1,5 @@
 # Welcome to my Pokemon-Generation-1-Team-Builder App!
-![Screenshot 2023-05-07 130237](https://user-images.githubusercontent.com/60550632/236700183-02655dae-7c25-46e8-aeb5-adb6a66a3c53.png)
+![Screenshot 2023-05-07 130237](https://github.com/jmyli562/Pokemon-Generation-1-TeamBuilderApp/assets/60550632/941776ba-93ff-4d29-ab74-34724f28924f)
 # Description
 This app allows the user to build a team of 6 Pokemon from the original 151 Pokemon present in Generation 1 using information pulled from PokeAPI (https://pokeapi.co/). Under the 'Build your team here section' of my app, you can select from a dropdown, a list of names of Pokemon and selecting a Pokemon will display information about it such as it's name, type, ability, and moves. The user is allowed to manually select moves that they would like their Pokemon to have, and pressing the add Pokemon to team button will display a preview of the unsaved team that the user currently has. Once you have built a team of 6, you can use the Save to Team 1 or Team 2 buttons to save your team to the backend to have your team persist. There are also show, edit, and clear Team 1 & Team 2 that will allow you to view your team, edit your team's Pokemon or moves, as well as clear the Team from the backend so you can save a new team. 
 
@@ -28,6 +28,8 @@ $ explorer.exe index.html
 pokemon-gen1-team-builder-app.netlify.app
 ```
 ## Demo Video
+
+https://github.com/jmyli562/Pokemon-Generation-1-TeamBuilderApp/assets/60550632/7128f5d6-4f57-4c36-927e-934f1fdf8e10
 
 ## Links to Resources used in Project
 The following are links to resources and images used in this project:
