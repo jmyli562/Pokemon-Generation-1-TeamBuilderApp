@@ -10,7 +10,7 @@
 .team-builder {
   float: left;
   padding-left: 100px;
-  width: 30%;
+  width: 25%;
 }
 
 body {
@@ -284,7 +284,12 @@ td {
 }
 
 #team-analysis-table {
-  position: fixed;
-  left: 1900px;
-  bottom: 250px;
+  position: relative;
+  left: 1500px;
+  bottom: 900px;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
