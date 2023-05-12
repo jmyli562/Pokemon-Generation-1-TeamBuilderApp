@@ -165,8 +165,7 @@ function createTeamCard(member, team) {
 
 function displayTeam(team) {
   if (team === 1) {
-    fetch("http://localhost:3000/Team1")
-      // fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1")
+    fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1")
       .then((resp) => resp.json())
       .then((data) =>
         data.forEach((member, index) => {
@@ -176,8 +175,7 @@ function displayTeam(team) {
       );
   } else if (team === 2) {
     const grabDiv = document.getElementById("team2");
-    fetch("http://localhost:3000/Team2")
-      // fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2")
+    fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2")
       .then((resp) => resp.json())
       .then((data) =>
         data.forEach((member, index) => {
@@ -294,7 +292,7 @@ function updateTableWithWeaknesses(weaknessArr, id) {
 
 function writeTeamOneToServer() {
   pkmTeam1.forEach((member) => {
-    fetch("http://localhost:3000/Team1", {
+    fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -307,7 +305,7 @@ function writeTeamOneToServer() {
 
 function writeTeamTwoToServer() {
   pkmTeam2.forEach((member) => {
-    fetch("http://localhost:3000/Team2", {
+    fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -319,12 +317,12 @@ function writeTeamTwoToServer() {
 }
 
 function deleteTeamOneFromServer() {
-  fetch("http://localhost:3000/Team1")
+  fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1")
     .then((resp) => resp.json())
     .then((team) =>
       team.forEach((member) => {
         let id = member.id;
-        fetch(`http://localhost:3000/Team1/${id}`, {
+        fetch(`https://pokemon-team-builder-ycg5.onrender.com/Team1/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -339,12 +337,12 @@ function deleteTeamOneFromServer() {
 }
 
 function deleteTeamTwoFromServer() {
-  fetch("http://localhost:3000/Team2")
+  fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2")
     .then((resp) => resp.json())
     .then((team) =>
       team.forEach((member) => {
         let id = member.id;
-        fetch(`http://localhost:3000/Team2/${id}`, {
+        fetch(`https://pokemon-team-builder-ycg5.onrender.com/Team2/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -361,38 +359,42 @@ function deleteTeamTwoFromServer() {
 async function checkIfTeamOneIsFull() {
   let isFull;
 
-  return fetch("http://localhost:3000/Team1").then((resp) => {
-    return resp.json().then((data) => {
-      if (data.length >= 6) {
-        isFull = true;
-      } else {
-        isFull = false;
-      }
+  return fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1").then(
+    (resp) => {
+      return resp.json().then((data) => {
+        if (data.length >= 6) {
+          isFull = true;
+        } else {
+          isFull = false;
+        }
 
-      return isFull;
-    });
-  });
+        return isFull;
+      });
+    }
+  );
 }
 
 async function checkIfTeamTwoIsFull() {
   let isFull;
 
-  return fetch("http://localhost:3000/Team2").then((resp) => {
-    return resp.json().then((data) => {
-      if (data.length >= 6) {
-        isFull = true;
-      } else {
-        isFull = false;
-      }
+  return fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2").then(
+    (resp) => {
+      return resp.json().then((data) => {
+        if (data.length >= 6) {
+          isFull = true;
+        } else {
+          isFull = false;
+        }
 
-      return isFull;
-    });
-  });
+        return isFull;
+      });
+    }
+  );
 }
 
 function updateTeam1Member() {
   membersToUpdate.forEach((member, index) => {
-    fetch(`http://localhost:3000/Team1/${member.id}`, {
+    fetch(`https://pokemon-team-builder-ycg5.onrender.com/Team1/${member.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -407,7 +409,7 @@ function updateTeam1Member() {
 
 function updateTeam2Member() {
   membersToUpdate.forEach((member, index) => {
-    fetch(`http://localhost:3000/Team2/${member.id}`, {
+    fetch(`https://pokemon-team-builder-ycg5.onrender.com/Team2/${member.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -423,13 +425,16 @@ function updateTeam2Member() {
 function saveCurrTeamToOne() {
   if (wasEdited) {
     //isEdited is a boolean which keeps track of if a pokemon from either team 1 or team 2 was deleted
+    const table = document.getElementById("team-analysis-table");
     createTeamCard(currPokemon, 1); //create a new team card for that newly added Pokemon
     updateTeam1Member();
+    table.hidden = true;
     window.alert("Team 1 was updated with the new pokemon.");
     membersToUpdate.length = 0;
     currTeam.length = 0;
     deletePokemonImageTeam1();
     wasEdited = false;
+    editTeamBtn1.disabled = false;
   } else if (currTeam.length < 6) {
     window.alert(
       "Can't save a team with less than 6 pokemon. Please add more pokemon."
@@ -486,13 +491,16 @@ function saveCurrTeamToOne() {
 
 function saveCurrTeamToTwo() {
   if (wasEdited) {
+    const table = document.getElementById("team-analysis-table");
     createTeamCard(currPokemon, 2);
     updateTeam2Member();
+    table.hidden = true;
     window.alert("Team 2 was updated with the new pokemon.");
     membersToUpdate.length = 0;
     currTeam.length = 0;
     deletePokemonImageTeam2();
     wasEdited = false;
+    editTeamBtn2.disabled = false;
   } else if (currTeam.length < 6) {
     window.alert(
       "Can't save a team with less than 6 pokemon. Please add more pokemon."
@@ -749,7 +757,7 @@ function viewClickedPokemonTeam1(e) {
   const modal = document.getElementById("pkmModal");
   showModal();
 
-  fetch("http://localhost:3000/Team1")
+  fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1")
     .then((resp) => resp.json())
     .then((data) => {
       data.forEach((member) => {
@@ -767,7 +775,7 @@ function viewClickedPokemonTeam2(e) {
   const modal = document.getElementById("pkmModal");
   showModal();
 
-  fetch("http://localhost:3000/Team2")
+  fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2")
     .then((resp) => resp.json())
     .then((data) => {
       data.forEach((member) => {
@@ -828,7 +836,7 @@ function updateMovesTeam2(pkm) {
   pkm.move3 = newMove3;
   pkm.move4 = newMove4;
 
-  fetch(`http://localhost:3000/Team2/${pkm.id}`, {
+  fetch(`https://pokemon-team-builder-ycg5.onrender.com/Team2/${pkm.id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -859,7 +867,7 @@ function updateMovesTeam1(pkm) {
   pkm.move3 = newMove3;
   pkm.move4 = newMove4;
 
-  fetch(`http://localhost:3000/Team1/${pkm.id}`, {
+  fetch(`https://pokemon-team-builder-ycg5.onrender.com/Team1/${pkm.id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
