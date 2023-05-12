@@ -1,12 +1,12 @@
 let changedPokemon = false;
 let chosenTeam;
-const pkmTeam1 = [];
-const pkmTeam2 = [];
+const pkmTeam1 = []; ////am arrau that will hold the team that the user saved to slot 1
+const pkmTeam2 = []; //am arrau that will hold the team that the user saved to slot 2
 const currTeam = []; //an array that will hold pokemon objects of the users selected team of pokemon
 let currPokemon = {};
 const membersToUpdate = [];
 let wasEdited = false;
-let addToTeamOne;
+let addToTeamOne; //boolean which will hold the value of true if the currPokemon needs to be added to team 1 or false which means the pokemon will be added to team 2
 
 const modal = document.getElementById("pkmModal");
 const close = document.querySelector(".close");
@@ -32,8 +32,8 @@ const pkmImages2 = document.getElementById("team2");
 const p2 = document.getElementById("type2");
 const p3 = document.getElementById("ability");
 
-const slctDropDown = document.getElementById("pokemon-list"); //getting the dropdown menu
-const addPkmBtn = document.getElementById("add-pokemon"); //getting the add pokemon button
+const slctDropDown = document.getElementById("pokemon-list");
+const addPkmBtn = document.getElementById("add-pokemon");
 
 slctDropDown.addEventListener("change", displayPokemonImage);
 addPkmBtn.addEventListener("click", addPokemonToTeam);
@@ -44,7 +44,9 @@ close.addEventListener("click", () => {
   removeModalContent();
 });
 editTeamBtn1.addEventListener("click", (e) => {
+  e.stopPropagation();
   if (editTeamBtn2.disabled === true) {
+    //check needed because if the user presses edit team 1 after viewing team 2 the button for edit team 1 was not disabled
     deletePokemonImageTeam2();
     displayTeamOne();
     window.alert("Please click on a Pokemon to edit its moves or replace it.");
@@ -56,7 +58,8 @@ editTeamBtn1.addEventListener("click", (e) => {
     editTeamBtn1.disabled = true;
   }
 });
-editTeamBtn2.addEventListener("click", () => {
+editTeamBtn2.addEventListener("click", (e) => {
+  e.stopPropagation();
   if (editTeamBtn1.disabled === true) {
     deletePokemonImageTeam1();
     displayTeamTwo();
@@ -69,7 +72,9 @@ editTeamBtn2.addEventListener("click", () => {
     editTeamBtn2.disabled = true;
   }
 });
-clearTeamBtn1.addEventListener("click", () => {
+clearTeamBtn1.addEventListener("click", (e) => {
+  e.stopPropagation();
+
   deleteTeamOneFromServer();
 
   deletePokemonImageTeam1();
@@ -80,7 +85,9 @@ clearTeamBtn1.addEventListener("click", () => {
 
   window.alert("Team One Cleared!");
 });
-clearTeamBtn2.addEventListener("click", () => {
+clearTeamBtn2.addEventListener("click", (e) => {
+  e.stopPropagation();
+
   deleteTeamTwoFromServer();
 
   deletePokemonImageTeam2();
@@ -92,15 +99,12 @@ clearTeamBtn2.addEventListener("click", () => {
   window.alert("Team Two Cleared!");
 });
 
-//zoomPageOut(); //will set the zoom of the page automaticallyo to 75% to make the page look nice
+zoomPageOut(); //will set the zoom of the page automatically to to 65% to make the page look nice
 fetchPokemonNames();
-//deleteTeamOneFromServer();
-/*
-function zoomPageOut(){
-    document.body.style.zoom = "80%";
-}
 
-*/
+function zoomPageOut() {
+  document.body.style.zoom = "65%";
+}
 
 function displayTeamOne() {
   chosenTeam = 1;
@@ -114,6 +118,7 @@ function displayTeamTwo() {
 
 function deletePokemonImageTeam2() {
   while (pkmImages2.firstChild) {
+    //this function will loop through the images under the div and remove the images
     pkmImages2.removeChild(pkmImages2.firstChild);
   }
 }
@@ -184,11 +189,9 @@ function displayTeam(team) {
 }
 
 async function fillTeamTable(member, index) {
+  //this function will fill the heading of the table with the members of the team as well as their icons
   const table = document.getElementById("team-analysis-table");
   table.hidden = false;
-
-  let weaknesses = [];
-  let resistances = [];
 
   const imgSlot = document.getElementsByClassName(`slot-${index}-pokemon`)[0]
     .children[0].children[0];
@@ -202,17 +205,11 @@ async function fillTeamTable(member, index) {
 
   getResistances(member);
   getWeaknesses(member);
-
-  //console.log(resistances);
-  //console.log(resistances);
-  /*
-  for (let i = 0; (row = table.rows[i]); i++) {
-    console.log(row);
-  }
-  */
 }
 
 function getResistances(pokemon) {
+  //this function will make a fetch request to the PokeAPI type endpoint and push the half damage data to an array
+  //and call a separate function to fill that data in a table
   const arrOfTypes = [];
   const resist = [];
   const type1 = pokemon.type1;
@@ -270,7 +267,6 @@ function getWeaknesses(pokemon) {
 
 function updateTableWithResistances(resistArr, id) {
   const table = document.getElementById("team-analysis-table");
-  //console.table(resistArr);
   for (let h = 0; h < resistArr.length; h++) {
     for (let i = 0; (row = table.rows[i]); i++) {
       for (var j = 0, col; (col = row.cells[j]); j++) {
@@ -426,7 +422,8 @@ function updateTeam2Member() {
 
 function saveCurrTeamToOne() {
   if (wasEdited) {
-    createTeamCard(currPokemon, 1);
+    //isEdited is a boolean which keeps track of if a pokemon from either team 1 or team 2 was deleted
+    createTeamCard(currPokemon, 1); //create a new team card for that newly added Pokemon
     updateTeam1Member();
     window.alert("Team 1 was updated with the new pokemon.");
     membersToUpdate.length = 0;
@@ -476,6 +473,8 @@ function saveCurrTeamToOne() {
         pkmTeam1.length = 0;
 
         window.alert("Team saved to slot 1");
+
+        editTeamBtn1.disabled = false;
 
         currTeam.length = 0; //clearing the currentTeam
 
@@ -537,6 +536,8 @@ function saveCurrTeamToTwo() {
         pkmTeam2.length = 0;
 
         window.alert("Team saved to slot 2");
+
+        editTeamBtn1.disabled = false;
 
         currTeam.length = 0; //clearing the currentTeam
 
