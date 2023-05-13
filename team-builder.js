@@ -752,11 +752,10 @@ function viewClickedPokemonTeam1(e) {
   fetch("http://localhost:3000/Team1")
     .then((resp) => resp.json())
     .then((data) => {
-      data.forEach((member) => {
-        if (slctedPokemon === member.image) {
-          setModalContent(member, team);
-        }
-      });
+      const foundMember = data.find((member) =>
+        findPokemonImage(member, slctedPokemon)
+      );
+      setModalContent(foundMember, team);
     });
 }
 
@@ -766,16 +765,19 @@ function viewClickedPokemonTeam2(e) {
   let slctedPokemon = e.target.src;
   const modal = document.getElementById("pkmModal");
   showModal();
-
+  console.log(slctedPokemon);
   fetch("http://localhost:3000/Team2")
     .then((resp) => resp.json())
     .then((data) => {
-      data.forEach((member) => {
-        if (slctedPokemon === member.image) {
-          setModalContent(member, team);
-        }
-      });
+      const foundMember = data.find((member) =>
+        findPokemonImage(member, slctedPokemon)
+      );
+      setModalContent(foundMember, team);
     });
+}
+
+function findPokemonImage(member, slctedImage) {
+  return member.image === slctedImage;
 }
 
 function displayLearnedMoves(pokemon) {
