@@ -760,11 +760,10 @@ function viewClickedPokemonTeam1(e) {
   fetch("https://pokemon-team-builder-ycg5.onrender.com/Team1")
     .then((resp) => resp.json())
     .then((data) => {
-      data.forEach((member) => {
-        if (slctedPokemon === member.image) {
-          setModalContent(member, team);
-        }
-      });
+      const foundMember = data.find((member) =>
+        findPokemonImage(member, slctedPokemon)
+      );
+      setModalContent(foundMember, team);
     });
 }
 
@@ -778,11 +777,10 @@ function viewClickedPokemonTeam2(e) {
   fetch("https://pokemon-team-builder-ycg5.onrender.com/Team2")
     .then((resp) => resp.json())
     .then((data) => {
-      data.forEach((member) => {
-        if (slctedPokemon === member.image) {
-          setModalContent(member, team);
-        }
-      });
+      const foundMember = data.find((member) =>
+        findPokemonImage(member, slctedPokemon)
+      );
+      setModalContent(foundMember, team);
     });
 }
 
