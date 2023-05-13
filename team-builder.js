@@ -784,6 +784,10 @@ function viewClickedPokemonTeam2(e) {
     });
 }
 
+function findPokemonImage(member, slctedImage) {
+  return member.image === slctedImage;
+}
+
 function displayLearnedMoves(pokemon) {
   const move1 = document.createElement("select");
   const move2 = document.createElement("select");
