@@ -7,7 +7,7 @@ let currPokemon = {};
 const membersToUpdate = [];
 let wasEdited = false;
 let addToTeamOne; //boolean which will hold the value of true if the currPokemon needs to be added to team 1 or false which means the pokemon will be added to team 2
-
+const table = document.getElementById("team-analysis-table");
 const modal = document.getElementById("pkmModal");
 const close = document.querySelector(".close");
 const teamPreview = document.getElementById("team-viewer");
@@ -79,8 +79,6 @@ clearTeamBtn1.addEventListener("click", (e) => {
 
   deletePokemonImageTeam1();
 
-  const table = document.getElementById("team-analysis-table");
-
   table.hidden = true;
 
   window.alert("Team One Cleared!");
@@ -91,8 +89,6 @@ clearTeamBtn2.addEventListener("click", (e) => {
   deleteTeamTwoFromServer();
 
   deletePokemonImageTeam2();
-
-  const table = document.getElementById("team-analysis-table");
 
   table.hidden = true;
 
@@ -190,7 +186,6 @@ function displayTeam(team) {
 
 async function fillTeamTable(member, index) {
   //this function will fill the heading of the table with the members of the team as well as their icons
-  const table = document.getElementById("team-analysis-table");
   table.hidden = false;
 
   const imgSlot = document.getElementsByClassName(`slot-${index}-pokemon`)[0]
@@ -266,7 +261,6 @@ function getWeaknesses(pokemon) {
 }
 
 function updateTableWithResistances(resistArr, id) {
-  const table = document.getElementById("team-analysis-table");
   for (let h = 0; h < resistArr.length; h++) {
     for (let i = 0; (row = table.rows[i]); i++) {
       for (var j = 0, col; (col = row.cells[j]); j++) {
@@ -279,7 +273,6 @@ function updateTableWithResistances(resistArr, id) {
 }
 
 function updateTableWithWeaknesses(weaknessArr, id) {
-  const table = document.getElementById("team-analysis-table");
   //console.table(resistArr);
   for (let h = 0; h < weaknessArr.length; h++) {
     for (let i = 0; (row = table.rows[i]); i++) {
@@ -426,6 +419,8 @@ function saveCurrTeamToOne() {
     createTeamCard(currPokemon, 1); //create a new team card for that newly added Pokemon
     updateTeam1Member();
     window.alert("Team 1 was updated with the new pokemon.");
+    editTeamBtn1.diabled = false;
+    table.hidden = true;
     membersToUpdate.length = 0;
     currTeam.length = 0;
     deletePokemonImageTeam1();
@@ -489,6 +484,8 @@ function saveCurrTeamToTwo() {
     createTeamCard(currPokemon, 2);
     updateTeam2Member();
     window.alert("Team 2 was updated with the new pokemon.");
+    editTeamBtn2.diabled = false;
+    table.hidden = true;
     membersToUpdate.length = 0;
     currTeam.length = 0;
     deletePokemonImageTeam2();
@@ -639,7 +636,6 @@ function addPokemonToTeam() {
     currTeam.push(currPokemon);
     previewTeam(currTeam);
     currPokemon = {};
-
     displayPokemonImage();
   }
 }
