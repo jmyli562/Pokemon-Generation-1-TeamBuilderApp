@@ -7,8 +7,8 @@
 3. [Instructions for Use](#instructions)
 4. [Demo Video](#video)
 5. [Links to files used in project](#links)
-6. [Contributing to my project](#Contributing)
-7. [License](#License)
+6. [Contributing to my project](#contributing)
+7. [License](#license)
 
 
 # Description <a name = "description"></a>
@@ -54,7 +54,7 @@ The following are links to resources and images used in this project:
 * API Used: https://pokeapi.co/
 * How to build a modal box: https://www.w3schools.com/howto/howto_css_modals.asp
 
-## Contributing <a name = "Contributing"></a>
+## Contributing <a name = "contributing"></a>
 
 Pull requests are welcome. If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 1) Fork the Project
@@ -68,6 +68,6 @@ to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License <a name = "License"></a>
+## License <a name = "license"></a>
 
 [MIT](https://choosealicense.com/licenses/mit/)
